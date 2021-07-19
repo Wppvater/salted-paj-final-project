@@ -138,3 +138,5 @@ describe('ingredient entity', () =>{
     expect(returnedIngredient.getMicroNutrients()).toEqual(fakeIngredient.microNutrients);
   })
 });
+
+module.exports = { fakeIngredient };
