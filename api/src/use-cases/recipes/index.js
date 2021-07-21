@@ -2,7 +2,7 @@ const { makeGetRecipes } = require('./getRecipes');
 const { makeCreateRecipe } = require('./createRecipe');
 const { validator } = require('../../utils');
 const { Id } = require('../../id');
-const recipesDb = {};
+const { recipesDb } = require('../../data-access');
 const getRecipes = makeGetRecipes({ recipesDb, validator });
 const createRecipe = makeCreateRecipe({ recipesDb, validator, Id });
 

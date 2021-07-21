@@ -1,3 +1,6 @@
+type Query{
+  getIngredients:[Ingredient]
+}
 type Ingredient{
   name: String!
   id: String!
@@ -9,8 +12,13 @@ type Ingredient{
   microNutrients: [microNutrient]!
 }
 
-type microNutrient @embedded{
+type microNutrient{
   name: String!
   amount: Float!
   unit: String!
+}
+
+type test{
+  id: Float!
+  name: String!
 }

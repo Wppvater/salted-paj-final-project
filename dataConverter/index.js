@@ -1,16 +1,20 @@
 const parse = require('csv-parse/lib/sync')
 const fs = require('fs');
+const {ingredientsDb} = require('../api/src/data-access');
 
-const parseCSV = () =>{
+const parseCSV = () => {
   const input = fs.readFileSync('./LivsmedelsDB.csv')
   const records = parse(input, {
     columns: true,
-  })
-  // console.log(typeof records);
-  // console.log(Array.isArray(records));
+  });
   convertObject(records[0]);
-  // console.log(records[0]);
-  // console.log(records[1]);
+  console.log(records[0]);
+  const convertedObjects = records.map(convertObject)
+  console.log(convertObject(records[0]));
+  console.log(convertedObjects.length);
+  console.log(convertedObjects.slice(0,100).length)
+  ingredientsDb.addMultiple(convertedObjects.slice(0,100));
+  console.log(convertedObjects[0]);
 }
 const outsideProperties = [
   'name', 'id', 'group', 'energy', 'carbohydrates', 'fat', 'protein'
@@ -42,6 +46,6 @@ const convertObject = row => {
   output.carbohydrates = Number(output.carbohydrates);
   output.fat = Number(output.fat);
   output.protein = Number(output.protein);
-  console.log(output);
+  return output;
 }
 parseCSV();
