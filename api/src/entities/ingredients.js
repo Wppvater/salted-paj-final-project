@@ -39,6 +39,9 @@ const buildMakeIngredient = ({validator}) => {
       getProtein: () => protein,
       getFat: () => fat,
       getMicroNutrients: () => microNutrients,
+      getAll: () => ({
+        id, name, group, energy, carbohydrates, protein, fat, microNutrients
+      })
     });
   };
 };

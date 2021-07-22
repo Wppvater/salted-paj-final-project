@@ -1,4 +1,5 @@
 const { makeCreateRecipe } = require('../createRecipe');
+const {getIngredients} = require('../../ingredients');
 const { fakeRecipeInput, fakeRecipe } = require('../../../entities/__tests__/recipes.spec');
 const { validator } = require('../../../utils');
 const Id = { makeId: () => '12345'}
@@ -18,7 +19,7 @@ const recipesDb = {
     return returnedArray;
   })
 };
-const createRecipe = makeCreateRecipe({ recipesDb, validator, Id });
+const createRecipe = makeCreateRecipe({ recipesDb, validator, Id, getIngredients });
 let testRecipeInput = {};
 describe('the createRecipes use-case', () => {
   beforeEach(() => {

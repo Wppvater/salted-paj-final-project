@@ -56,6 +56,17 @@ const buildMakeRecipe = ({validator}) => {
       getFat: () => ingredientInfo.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
       getMicroNutrients: () => microNutrientCalculator(),
       getIngredients: () => ingredients,
+      getDbStore: () => ({
+        id, name, instructions, ingredients, portions
+      }),
+      getAll: () => ({
+        id, name, instructions, ingredients, portions,
+        energy: ingredientInfo.reduce((totalEnergy, ingredient, index) => nutrientCalculator(totalEnergy, ingredient, 'energy', index), 0),
+        carbohydrates: ingredientInfo.reduce((totalCarbs, ingredient, index) => nutrientCalculator(totalCarbs, ingredient, 'carbohydrates', index), 0),
+        protein: ingredientInfo.reduce((totalProtein, ingredient, index) => nutrientCalculator(totalProtein, ingredient, 'protein', index), 0),
+        fat: ingredientInfo.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
+        microNutrients: microNutrientCalculator(),
+      })
     });
   };
 };
