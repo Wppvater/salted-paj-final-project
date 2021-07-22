@@ -1,5 +1,6 @@
 type Query{
   getAllIngredients:[Ingredient]
+  getAllRecipes:[Recipe]
 }
 type Ingredient{
   name: String!
@@ -16,6 +17,26 @@ type microNutrient{
   name: String!
   amount: Float!
   unit: String!
+}
+
+type Recipe{
+  name: String!
+  id: String!
+  instructions: [String]!
+  portions: Float!
+  ingredients: [RecipeIngredient]!
+  energy: Float!
+  carbohydrates: Float!
+  fat: Float!
+  protein: Float!
+  microNutrients: [microNutrient]!
+}
+
+type RecipeIngredient{
+  id: String!
+  unit: String!
+  amount: Float!
+  grams: Float!
 }
 
 type test{

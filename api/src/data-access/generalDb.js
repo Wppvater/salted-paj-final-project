@@ -11,6 +11,7 @@ const makeDbService = ({ collection }) => {
     return item.data;
   }
   const addToDatabase = async item => {
+    console.log('Adding data to database');
     return await client.query( 
       q.Create(
         q.Collection(collection),
@@ -22,6 +23,7 @@ const makeDbService = ({ collection }) => {
   } 
 
   const addMultipleToDatabase = async mappedItems => {
+    console.log('Adding data to database');
     return await client.query(
       q.Map(
         mappedItems, 
@@ -39,6 +41,7 @@ const makeDbService = ({ collection }) => {
   }  
 
   const getByIdsFromDatabase = async ids => {
+    console.log('Fetching data from database');
     return await client.query(
       q.Map(
         ids,
@@ -51,11 +54,12 @@ const makeDbService = ({ collection }) => {
         )
       )
     )
-  .then((ret) => ret.data.map(converter))
+  .then((ret) => ret.map(converter))
   .catch((err) => console.error('Error: %s', err))
 }
 
   const getAllFromDatabase = async () => {
+  console.log('Fetching data from database');
   return await client.query(
     q.Map(
       q.Paginate(q.Documents(q.Collection(`${collection}`)),{size:5000}),
