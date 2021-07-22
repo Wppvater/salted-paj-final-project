@@ -7,7 +7,7 @@ const { Id } = require('../../id');
 const { recipesDb } = require('../../data-access');
 const getRecipes = makeGetRecipes({ recipesDb, validator });
 const getAllRecipes = makeGetAllRecipes({ recipesDb, validator, getIngredients});
-const createRecipe = makeCreateRecipe({ recipesDb, validator, Id });
+const createRecipe = makeCreateRecipe({ recipesDb, validator, Id, getIngredients });
 
 const recipesService = Object.freeze({
   getRecipes,

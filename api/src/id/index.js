@@ -1,7 +1,7 @@
 const cuid = require('cuid'); 
 
 const Id = Object.freeze({
-  makeId: cuid(),
+  makeId: () => cuid(),
   isValidId: cuid().isCuid
 })
 

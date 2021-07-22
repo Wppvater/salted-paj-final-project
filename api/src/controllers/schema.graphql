@@ -43,3 +43,26 @@ type test{
   id: Float!
   name: String!
 }
+
+input RecipeIngredientInput{
+  id: String!
+  unit: String!
+  amount: Float!
+  grams: Float!
+}
+
+input RecipeAddRequest{
+  name: String!
+  instructions: [String]!
+  portions: Float!
+  ingredients: [RecipeIngredientInput]!
+}
+
+type RecipeAddResponse{
+  error: String
+  recipe: Recipe
+}
+
+type Mutation {
+  postRecipe(recipeInfo: RecipeAddRequest): RecipeAddResponse!
+}
