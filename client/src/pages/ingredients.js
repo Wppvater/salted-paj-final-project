@@ -1,9 +1,8 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
-import Nav from "../components/Nav";
 
 
-const IndexPage = ({data}) => {
+const IngredientsPage = ({data}) => {
   let ingredients = data.saltedpaj.getAllIngredients;
   ingredients = ingredients.sort((ingredientA, ingredientB )=>{ 
     if(ingredientA.name < ingredientB.name) { return -1; }
@@ -11,7 +10,7 @@ const IndexPage = ({data}) => {
     return 0;
   });
 
-  // console.log(ingredients.map(i => i.name));
+  console.log(ingredients.map(i => i.name));
   return (
     <main >
       <title>Home Page</title>
@@ -21,15 +20,14 @@ const IndexPage = ({data}) => {
       <ul>
         {ingredients.map(ingredient => <li key={ingredient.id}>{ingredient.name}</li>)}
       </ul>
-    <Nav />
     </main>
   )
 }
 
-export default IndexPage
+export default IngredientsPage
 
 export const pageQuery = graphql`
-query MyQuery3 {
+query MyQuery {
   saltedpaj {
     getAllIngredients {
       carbohydrates
