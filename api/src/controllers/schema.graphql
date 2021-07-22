@@ -1,5 +1,5 @@
 type Query{
-  getIngredients:[Ingredient]
+  getAllIngredients:[Ingredient]
 }
 type Ingredient{
   name: String!

@@ -1,6 +1,6 @@
 const { ingredients, getAllIngredients, getIngredients } = require('./ingredients');
 
 const root = {
-  getIngredients
+  Query: {getAllIngredients}
 }
 module.exports = {root};
