@@ -10,7 +10,7 @@ const Nav = () => (
     </Link>
     <Link to="/plan">
       <div className="nav__plan">
-        PLAN YOUR SCHEDULE
+        PLAN
       </div>
     </Link>
     <Link to="/recipes">

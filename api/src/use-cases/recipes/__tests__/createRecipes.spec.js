@@ -1,5 +1,4 @@
 const { makeCreateRecipe } = require('../createRecipe');
-const {getIngredients} = require('../../ingredients');
 const { fakeRecipeInput, fakeRecipe } = require('../../../entities/__tests__/recipes.spec');
 const { validator } = require('../../../utils');
 const Id = { makeId: () => '12345'}
@@ -19,6 +18,62 @@ const recipesDb = {
     return returnedArray;
   })
 };
+const getIngredients = ids => {
+  const returnedArray = [];
+  if(ids.includes('123')){
+    returnedArray.push({
+      id: '123',
+      name: "Totally real",
+      group: "Meat",
+      energy: 735,
+      carbohydrates: 19,
+      protein: 53,
+      fat: 3,
+      microNutrients: [{
+        name: "Vitamin D",
+        amount: 43,
+        unit: "micro"
+      },
+      {
+        name: "Sugar",
+        amount: 21,
+        unit: "grams"
+      },
+      {
+        name: "Zinc",
+        amount: 3,
+        unit: "milli"
+      }]
+    });
+  }
+  if(ids.includes('435')){
+    returnedArray.push({
+      id: '435',
+      name: "Extremely real",
+      group: "Lentils",
+      energy: 751,
+      carbohydrates: 35,
+      protein: 4,
+      fat: 30,
+      microNutrients: [{
+        name: "Vitamin D",
+        amount: 4,
+        unit: "micro"
+      },
+      {
+        name: "Sugar",
+        amount: 3,
+        unit: "grams"
+      },
+      {
+        name: "Vitamin E",
+        amount: 2,
+        unit: "milli"
+      }]
+    })
+  }
+  return returnedArray;
+}
 const createRecipe = makeCreateRecipe({ recipesDb, validator, Id, getIngredients });
 let testRecipeInput = {};
 describe('the createRecipes use-case', () => {

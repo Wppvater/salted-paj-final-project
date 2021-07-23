@@ -1,6 +1,9 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
 import Nav from "../components/Nav";
+import Logo from "../components/Logo";
+import DailySchedule from "../components/DailySchedule";
+import '../styles/sass.scss';
 
 
 const IndexPage = ({data}) => {
@@ -13,16 +16,25 @@ const IndexPage = ({data}) => {
 
   // console.log(ingredients.map(i => i.name));
   return (
+    <div class="blur">
+      <Logo />
+    <div class="circle">
     <main >
-      <title>Home Page</title>
-      <h1 >
-        Schedule
-      </h1>
-      <ul>
-        {ingredients.map(ingredient => <li key={ingredient.id}>{ingredient.name}</li>)}
-      </ul>
+      <div className="main__div">
+        <title>Home Page</title>
+        <h1>
+          LOGO
+        </h1>
+        <h2>
+          Schedule
+        </h2>
+        <DailySchedule />
+        <DailySchedule />
+      </div>
     <Nav />
     </main>
+    </div>
+    </div>
   )
 }
 

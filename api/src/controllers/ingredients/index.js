@@ -5,4 +5,4 @@ const ingredients = {
 }
 const getIngredients = getAllIngredients();
 
-module.exports = {ingredients, getAllIngredients, getIngredients};
+module.exports = { ingredients, getAllIngredients, getIngredients };
