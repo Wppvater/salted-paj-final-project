@@ -10,7 +10,7 @@ const DailySchedule = () => (
         Garlic spicy italian spaghetti
       </li>
       <li key="2" className="daily-schedule-breakfast_item">
-        Garlic spicy italian spaghetti
+        Coffee
       </li>
     </ul>
     <h3 className="daily-schedule__meal">Lunch</h3>

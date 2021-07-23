@@ -1,6 +1,7 @@
 type Query{
   getAllIngredients:[Ingredient]
   getAllRecipes:[Recipe]
+  getAllSchedules:[Schedule]
 }
 type Ingredient{
   name: String!
@@ -30,6 +31,20 @@ type Recipe{
   fat: Float!
   protein: Float!
   microNutrients: [microNutrient]!
+}
+
+type Schedule{
+  id: String!
+  name: String!
+  categories: [String]
+  recipes: [ScheduleRecipe]!
+}
+
+type ScheduleRecipe{
+  id: String!
+  day: Int!
+  mealInDay: Int!
+  portions: Float!
 }
 
 type RecipeIngredient{
@@ -63,6 +78,25 @@ type RecipeAddResponse{
   recipe: Recipe
 }
 
+input ScheduleRecipeInput{
+  id: String!
+  day: Int!
+  mealInDay: Int!
+  portions: Float!
+}
+
+input ScheduleAddRequest{
+  name: String!
+  categories: [String]!
+  recipes: [ScheduleRecipeInput]!
+}
+type ScheduleAddResponse{
+  error: String
+  schedule: Schedule
+}
+
+
 type Mutation {
   postRecipe(recipeInfo: RecipeAddRequest): RecipeAddResponse!
+  postSchedule(scheduleInfo: ScheduleAddRequest): ScheduleAddResponse!
 }

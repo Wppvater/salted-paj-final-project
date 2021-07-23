@@ -2,6 +2,7 @@ const { makeDbService } = require('./generalDb');
 const dbTestService = makeDbService({collection: 'Test'});
 const ingredientsDb = makeDbService({collection: 'Ingredients'})
 const recipesDb = makeDbService({collection: 'Recipes'})
+const schedulesDb = makeDbService({collection: 'Schedules'})
 
 // const waitForIt = async () => {
 //   const start = Date.now();
@@ -18,4 +19,4 @@ const recipesDb = makeDbService({collection: 'Recipes'})
 
 // waitForIt();
 
-module.exports = { ingredientsDb, recipesDb };
+module.exports = { ingredientsDb, recipesDb, schedulesDb };

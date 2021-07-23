@@ -2,7 +2,7 @@ require('dotenv').config()
 const faunadb = require("faunadb");
 q = faunadb.query;
 const client = new faunadb.Client({
-  secret: "fnAEOonJQ9ACDG_le2ecoe9Cq01-mXlJ2vq4WMCe"
+  secret: process.env.FAUNA_DB_SECRET
 });
 
 const makeDbService = ({ collection }) => {
@@ -11,7 +11,7 @@ const makeDbService = ({ collection }) => {
     return item.data;
   }
   const addToDatabase = async item => {
-    console.log('Adding data to database');
+    console.log(`Adding multiple data in ${collection} to database`);
     return await client.query( 
       q.Create(
         q.Collection(collection),
@@ -23,7 +23,7 @@ const makeDbService = ({ collection }) => {
   } 
 
   const addMultipleToDatabase = async mappedItems => {
-    console.log('Adding data to database');
+    console.log(`Adding multiple data in ${collection} to database`);
     return await client.query(
       q.Map(
         mappedItems, 
@@ -41,7 +41,8 @@ const makeDbService = ({ collection }) => {
   }  
 
   const getByIdsFromDatabase = async ids => {
-    console.log('Fetching data from database');
+    console.log(`Fetching ${collection} by id from database`);
+    console.log(ids);
     return await client.query(
       q.Map(
         ids,
@@ -59,7 +60,7 @@ const makeDbService = ({ collection }) => {
 }
 
   const getAllFromDatabase = async () => {
-  console.log('Fetching data from database');
+  console.log(`Fetching all ${collection} from database`);
   return await client.query(
     q.Map(
       q.Paginate(q.Documents(q.Collection(`${collection}`)),{size:5000}),

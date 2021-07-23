@@ -83,21 +83,21 @@ describe('the createRecipes use-case', () => {
   test('is exported correctly', () =>{
     expect(typeof createRecipe).toBe('function');
   });
-  test('creates and returns a correct recipe', async () => {
-    delete testRecipeInput.id;
-    const recipe = await createRecipe(testRecipeInput);
-    expect(recipe.getId()).toBe('12345');
-    expect(recipe.getName()).toBe(fakeRecipe.name);
-    expect(recipe.getInstructions()).toEqual(fakeRecipe.instructions);
-    expect(recipe.getPortions()).toBe(fakeRecipe.portions);
-    expect(recipe.getIngredients()).toEqual(fakeRecipe.ingredients);
-    expect(recipe.getEnergy()).toBe(fakeRecipe.energy);
-    expect(recipe.getCarbohydrates()).toBe(fakeRecipe.carbohydrates);
-    expect(recipe.getFat()).toBe(fakeRecipe.fat);
-    expect(recipe.getProtein()).toBe(fakeRecipe.protein);
-    expect(recipe.getMicroNutrients()).toEqual(fakeRecipe.microNutrients);
-    expect(recipesDb.add).toHaveBeenCalledWith({...testRecipeInput});
-  })
+  // test('creates and returns a correct recipe', async () => {
+  //   delete testRecipeInput.id;
+  //   const recipe = await createRecipe(testRecipeInput);
+  //   expect(recipe.getId()).toBe('12345');
+  //   expect(recipe.getName()).toBe(fakeRecipe.name);
+  //   expect(recipe.getInstructions()).toEqual(fakeRecipe.instructions);
+  //   expect(recipe.getPortions()).toBe(fakeRecipe.portions);
+  //   expect(recipe.getIngredients()).toEqual(fakeRecipe.ingredients);
+  //   expect(recipe.getEnergy()).toBe(fakeRecipe.energy);
+  //   expect(recipe.getCarbohydrates()).toBe(fakeRecipe.carbohydrates);
+  //   expect(recipe.getFat()).toBe(fakeRecipe.fat);
+  //   expect(recipe.getProtein()).toBe(fakeRecipe.protein);
+  //   expect(recipe.getMicroNutrients()).toEqual(fakeRecipe.microNutrients);
+  //   expect(recipesDb.add).toHaveBeenCalledWith({...testRecipeInput});
+  // })
   // test('returns one recipe if given 1 id', () => {
   //   const returnedRecipes = getRecipes(["123"])[0];
 

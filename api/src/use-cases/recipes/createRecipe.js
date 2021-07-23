@@ -11,7 +11,6 @@ const makeCreateRecipe = ({ recipesDb, validator, Id, getIngredients }) => {
     const ingredientInfo = await getIngredients(ingredientIds);
     recipeInput.ingredientInfo = ingredientInfo.map(i => ({...i.getAll()}));
     const recipe = makeRecipe(recipeInput);
-    console.log(recipe.getAll());
 
     await recipesDb.add(recipeToDb);
     const dbResponses = await recipesDb.getByIds([recipeInput.id]);

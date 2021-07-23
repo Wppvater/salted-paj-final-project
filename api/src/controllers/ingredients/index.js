@@ -3,6 +3,6 @@ const {getAllIngredients} = require('./getAllIngredients');
 const ingredients = {
   getAll: getAllIngredients
 }
-const getIngredients = getAllIngredients();
+// const getIngredients = getAllIngredients();
 
-module.exports = { ingredients, getAllIngredients, getIngredients };
+module.exports = { ingredients, getAllIngredients };
