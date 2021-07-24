@@ -17,17 +17,17 @@ const IndexPage = ({data}) => {
   // console.log(ingredients.map(i => i.name));
   return (
     <div class="blur">
-      {/* <Logo /> */}
     <div class="circle">
     <main >
+      <Logo />
       <div className="main__div">
         <title>Home Page</title>
-        <h1>
+        {/* <h1>
           LOGO
         </h1>
         <h2>
           Schedule
-        </h2>
+        </h2> */}
         <DailySchedule />
         <DailySchedule />
       </div>
