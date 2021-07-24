@@ -7,17 +7,17 @@ import '../styles/sass.scss';
 
 
 const IndexPage = ({data}) => {
-  let ingredients = data.saltedpaj.getAllIngredients;
-  ingredients = ingredients.sort((ingredientA, ingredientB )=>{ 
-    if(ingredientA.name < ingredientB.name) { return -1; }
-    if(ingredientA.name > ingredientB.name) { return 1; }
-    return 0;
-  });
+  // let ingredients = data.saltedpaj.getAllIngredients;
+  // ingredients = ingredients.sort((ingredientA, ingredientB )=>{ 
+  //   if(ingredientA.name < ingredientB.name) { return -1; }
+  //   if(ingredientA.name > ingredientB.name) { return 1; }
+  //   return 0;
+  // });
 
   // console.log(ingredients.map(i => i.name));
   return (
     <div class="blur">
-      <Logo />
+      {/* <Logo /> */}
     <div class="circle">
     <main >
       <div className="main__div">
