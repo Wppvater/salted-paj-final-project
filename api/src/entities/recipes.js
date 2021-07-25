@@ -55,16 +55,16 @@ const buildMakeRecipe = ({validator}) => {
       getProtein: () => ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),
       getFat: () => ingredientObjects.reduce((totalFat, ingredient, index) => totalFat + ingredient.getFat()*ingredients[index].grams/100, 0),
       getMicroNutrients: () => microNutrientCalculator(),
-      getIngredients: () => ingredients,
+      getIngredients: () => ingredients.map(ingredient => ({...ingredient})),
       getDbStore: () => ({
-        id, name, instructions, ingredients, portions
+        id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions
       }),
       getAll: () => ({
-        id, name, instructions, ingredients, portions,
-        energy: ingredientObjects.reduce((totalEnergy, ingredient, index) => nutrientCalculator(totalEnergy, ingredient, 'energy', index), 0),
-        carbohydrates: ingredientObjects.reduce((totalCarbs, ingredient, index) => nutrientCalculator(totalCarbs, ingredient, 'carbohydrates', index), 0),
-        protein: ingredientObjects.reduce((totalProtein, ingredient, index) => nutrientCalculator(totalProtein, ingredient, 'protein', index), 0),
-        fat: ingredientObjects.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
+        id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions,
+        energy: ingredientObjects.reduce((totalEnergy, ingredient, index) =>  totalEnergy + ingredient.getEnergy()*ingredients[index].grams/100, 0),
+        carbohydrates: ingredientObjects.reduce((totalCarbs, ingredient, index) => totalCarbs + ingredient.getCarbohydrates()*ingredients[index].grams/100, 0),
+        protein: ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),
+        fat: ingredientObjects.reduce((totalFat, ingredient, index) => totalFat + ingredient.getFat()*ingredients[index].grams/100, 0),
         microNutrients: microNutrientCalculator(),
       })
     });
