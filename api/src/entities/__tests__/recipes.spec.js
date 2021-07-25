@@ -41,7 +41,30 @@ const fakeRecipeInput = {
         name: "Zinc",
         amount: 3,
         unit: "milli"
-      }]
+      }],
+      getAll: () => ({
+        id: '123',
+        name: "Totally real",
+        group: "Meat",
+        energy: 735,
+        carbohydrates: 19,
+        protein: 53,
+        fat: 3,
+        microNutrients: [{
+          name: "Vitamin D",
+          amount: 43,
+          unit: "micro"
+        },
+        {
+          name: "Sugar",
+          amount: 21,
+          unit: "grams"
+        },
+        {
+          name: "Zinc",
+          amount: 3,
+          unit: "milli"
+      }]})
     },
     {
       getId: () => '435',
@@ -65,16 +88,40 @@ const fakeRecipeInput = {
         name: "Vitamin E",
         amount: 2,
         unit: "milli"
+      }],
+      getAll: () => ({
+        id: '435',
+      name: "Extremely real",
+      group: "Lentils",
+      energy: 751,
+      carbohydrates: 35,
+      protein: 4,
+      fat: 30,
+      microNutrients: [{
+        name: "Vitamin D",
+        amount: 4,
+        unit: "micro"
+      },
+      {
+        name: "Sugar",
+        amount: 3,
+        unit: "grams"
+      },
+      {
+        name: "Vitamin E",
+        amount: 2,
+        unit: "milli"
       }]
+      })
     }
   ]
 }
 const fakeRecipe = {
-  id: '123',
-  name: 'Something nice',
-  instructions: ['Buy food', 'Make food', 'Eat'],
-  portions: 4,
-  ingredients: [{
+  getId: () => '123',
+  getName: () => 'Something nice',
+  getInstructions: () => ['Buy food', 'Make food', 'Eat'],
+  getPortions: () => 4,
+  getIngredients: () => [{
       id: '123',
       amount: 120,
       unit: 'grams',
@@ -86,11 +133,11 @@ const fakeRecipe = {
       unit: 'dl',
       grams: 55,
     }],
-  energy: 1295.05,
-  carbohydrates: 42.05,
-  protein: 65.8,
-  fat: 20.1,
-  microNutrients: [{
+  getEnergy: () => 1295.05,
+  getCarbohydrates: () => 42.05,
+  getProtein: () => 65.8,
+  getFat: () => 20.1,
+  getMicroNutrients: () => [{
     name: "Vitamin D",
     amount: 53.8,
     unit: "micro"
@@ -181,16 +228,16 @@ describe('recipe entity', () =>{
   });
   test('returns an object with correct data', () => {
     const returnedIngredient = makeRecipe(testRecipe);
-    expect(returnedIngredient.getId()).toBe(fakeRecipe.id);
-    expect(returnedIngredient.getName()).toBe(fakeRecipe.name);
-    expect(returnedIngredient.getInstructions()).toEqual(fakeRecipe.instructions);
-    expect(returnedIngredient.getPortions()).toBe(fakeRecipe.portions);
-    expect(returnedIngredient.getEnergy()).toBe(fakeRecipe.energy);
-    expect(returnedIngredient.getCarbohydrates()).toBe(fakeRecipe.carbohydrates);
-    expect(returnedIngredient.getFat()).toBe(fakeRecipe.fat);
-    expect(returnedIngredient.getProtein()).toBe(fakeRecipe.protein);
-    expect(returnedIngredient.getMicroNutrients()).toEqual(fakeRecipe.microNutrients);
-    expect(returnedIngredient.getIngredients()).toEqual(fakeRecipe.ingredients);
+    expect(returnedIngredient.getId()).toBe(fakeRecipe.getId());
+    expect(returnedIngredient.getName()).toBe(fakeRecipe.getName());
+    expect(returnedIngredient.getInstructions()).toEqual(fakeRecipe.getInstructions());
+    expect(returnedIngredient.getPortions()).toBe(fakeRecipe.getPortions());
+    expect(returnedIngredient.getEnergy()).toBe(fakeRecipe.getEnergy());
+    expect(returnedIngredient.getCarbohydrates()).toBe(fakeRecipe.getCarbohydrates());
+    expect(returnedIngredient.getFat()).toBe(fakeRecipe.getFat());
+    expect(returnedIngredient.getProtein()).toBe(fakeRecipe.getProtein());
+    expect(returnedIngredient.getMicroNutrients()).toEqual(fakeRecipe.getMicroNutrients());
+    expect(returnedIngredient.getIngredients()).toEqual(fakeRecipe.getIngredients());
   })
 });
 
