@@ -42,29 +42,7 @@ const fakeRecipeInput = {
         amount: 3,
         unit: "milli"
       }],
-      getAll: () => ({
-        id: '123',
-        name: "Totally real",
-        group: "Meat",
-        energy: 735,
-        carbohydrates: 19,
-        protein: 53,
-        fat: 3,
-        microNutrients: [{
-          name: "Vitamin D",
-          amount: 43,
-          unit: "micro"
-        },
-        {
-          name: "Sugar",
-          amount: 21,
-          unit: "grams"
-        },
-        {
-          name: "Zinc",
-          amount: 3,
-          unit: "milli"
-      }]})
+      
     },
     {
       getId: () => '435',
@@ -89,30 +67,7 @@ const fakeRecipeInput = {
         amount: 2,
         unit: "milli"
       }],
-      getAll: () => ({
-        id: '435',
-      name: "Extremely real",
-      group: "Lentils",
-      energy: 751,
-      carbohydrates: 35,
-      protein: 4,
-      fat: 30,
-      microNutrients: [{
-        name: "Vitamin D",
-        amount: 4,
-        unit: "micro"
-      },
-      {
-        name: "Sugar",
-        amount: 3,
-        unit: "grams"
-      },
-      {
-        name: "Vitamin E",
-        amount: 2,
-        unit: "milli"
-      }]
-      })
+      
     }
   ]
 }
