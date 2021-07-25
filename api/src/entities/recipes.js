@@ -5,7 +5,7 @@ const buildMakeRecipe = ({validator}) => {
     instructions,
     portions,
     ingredients,
-    ingredientInfo,
+    ingredientObjects,
   } = {}) => {
     validator.validateType({type:'string', data: id, errorMessage:'Recipe must have id.'})
     validator.validateType({type:'string', data: name, errorMessage:'Recipe must have name and be a string.'})
@@ -13,7 +13,7 @@ const buildMakeRecipe = ({validator}) => {
     validator.validateType({type:'number', data: portions, errorMessage:'Recipe must have portions.'})
     validator.validateNumber({min: 1, data:portions, errorMessage: 'Recipe must have a positive number of portions.'})
     validator.validateArray({data: ingredients, errorMessage:'Recipe must have an array of ingredients.'});
-    validator.validateArray({data: ingredientInfo, errorMessage:'Recipe must have an array of ingredientInfo.'});
+    validator.validateArray({data: ingredientObjects, errorMessage:'Recipe must have an array of ingredientObjects.'});
     ingredients.forEach(ingredient => {
       validator.validateType({type: 'string', data: ingredient.id, errorMessage: 'Recipe\'s ingredients must have id and be a string.'});
       validator.validateType({type: 'string', data: ingredient.unit, errorMessage: 'Recipe\'s ingredients must have unit and it must be a string.'});
@@ -24,8 +24,8 @@ const buildMakeRecipe = ({validator}) => {
     const nutrientCalculator = (total, ingredient, nutrient, index) => total + ingredient[nutrient]*ingredients[index].grams/100;
     const microNutrientCalculator = () => {
       let output = [];
-      ingredientInfo.forEach((ingredient, index) =>{
-        ingredient.microNutrients.forEach(microNutrient => {
+      ingredientObjects.forEach((ingredient, index) =>{
+        ingredient.getMicroNutrients().forEach(microNutrient => {
           for(let j=0; j < output.length; j++){
             if(microNutrient.name === output[j].name){
               output[j].amount = Math.round(output[j].amount * 100 + microNutrient.amount*ingredients[index].grams)/100;
@@ -50,10 +50,10 @@ const buildMakeRecipe = ({validator}) => {
       getName: () => name,
       getInstructions: () => instructions,
       getPortions: () => portions,
-      getEnergy: () => ingredientInfo.reduce((totalEnergy, ingredient, index) => nutrientCalculator(totalEnergy, ingredient, 'energy', index), 0),
-      getCarbohydrates: () => ingredientInfo.reduce((totalCarbs, ingredient, index) => nutrientCalculator(totalCarbs, ingredient, 'carbohydrates', index), 0),
-      getProtein: () => ingredientInfo.reduce((totalProtein, ingredient, index) => nutrientCalculator(totalProtein, ingredient, 'protein', index), 0),
-      getFat: () => ingredientInfo.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
+      getEnergy: () => ingredientObjects.reduce((totalEnergy, ingredient, index) =>  totalEnergy + ingredient.getEnergy()*ingredients[index].grams/100, 0),
+      getCarbohydrates: () => ingredientObjects.reduce((totalCarbs, ingredient, index) =>  totalCarbs + ingredient.getCarbohydrates()*ingredients[index].grams/100, 0),
+      getProtein: () => ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),
+      getFat: () => ingredientObjects.reduce((totalFat, ingredient, index) => totalFat + ingredient.getFat()*ingredients[index].grams/100, 0),
       getMicroNutrients: () => microNutrientCalculator(),
       getIngredients: () => ingredients,
       getDbStore: () => ({
@@ -61,10 +61,10 @@ const buildMakeRecipe = ({validator}) => {
       }),
       getAll: () => ({
         id, name, instructions, ingredients, portions,
-        energy: ingredientInfo.reduce((totalEnergy, ingredient, index) => nutrientCalculator(totalEnergy, ingredient, 'energy', index), 0),
-        carbohydrates: ingredientInfo.reduce((totalCarbs, ingredient, index) => nutrientCalculator(totalCarbs, ingredient, 'carbohydrates', index), 0),
-        protein: ingredientInfo.reduce((totalProtein, ingredient, index) => nutrientCalculator(totalProtein, ingredient, 'protein', index), 0),
-        fat: ingredientInfo.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
+        energy: ingredientObjects.reduce((totalEnergy, ingredient, index) => nutrientCalculator(totalEnergy, ingredient, 'energy', index), 0),
+        carbohydrates: ingredientObjects.reduce((totalCarbs, ingredient, index) => nutrientCalculator(totalCarbs, ingredient, 'carbohydrates', index), 0),
+        protein: ingredientObjects.reduce((totalProtein, ingredient, index) => nutrientCalculator(totalProtein, ingredient, 'protein', index), 0),
+        fat: ingredientObjects.reduce((totalFat, ingredient, index) => nutrientCalculator(totalFat, ingredient, 'fat', index), 0),
         microNutrients: microNutrientCalculator(),
       })
     });

@@ -18,16 +18,16 @@ const fakeRecipeInput = {
     unit: 'dl',
     grams: 55,
   }],
-  ingredientInfo: [
+  ingredientObjects: [
     {
-      id: '123',
-      name: "Totally real",
-      group: "Meat",
-      energy: 735,
-      carbohydrates: 19,
-      protein: 53,
-      fat: 3,
-      microNutrients: [{
+      getId: () => '123',
+      getName: () => "Totally real",
+      getGroup: () => "Meat",
+      getEnergy: () => 735,
+      getCarbohydrates: () => 19,
+      getProtein: () => 53,
+      getFat: () => 3,
+      getMicroNutrients: () => [{
         name: "Vitamin D",
         amount: 43,
         unit: "micro"
@@ -44,14 +44,14 @@ const fakeRecipeInput = {
       }]
     },
     {
-      id: '435',
-      name: "Extremely real",
-      group: "Lentils",
-      energy: 751,
-      carbohydrates: 35,
-      protein: 4,
-      fat: 30,
-      microNutrients: [{
+      getId: () => '435',
+      getName: () => "Extremely real",
+      getGroup: () => "Lentils",
+      getEnergy: () => 751,
+      getCarbohydrates: () => 35,
+      getProtein: () => 4,
+      getFat: () => 30,
+      getMicroNutrients: () => [{
         name: "Vitamin D",
         amount: 4,
         unit: "micro"
@@ -121,7 +121,7 @@ describe('recipe entity', () =>{
       instructions: [...fakeRecipeInput.instructions],
       portions: fakeRecipeInput.portions,
       ingredients: [...fakeRecipeInput.ingredients],
-      ingredientInfo: [...fakeRecipeInput.ingredientInfo]
+      ingredientObjects: [...fakeRecipeInput.ingredientObjects]
     }
   })
   test('is exported correctly', () =>{
@@ -151,8 +151,8 @@ describe('recipe entity', () =>{
     expect(() => makeRecipe(testRecipe)).toThrow('Recipe must have an array of ingredients.');
   });
   test('throws an error if no ingredientInfo is provided', () =>{
-    delete testRecipe.ingredientInfo;
-    expect(() => makeRecipe(testRecipe)).toThrow('Recipe must have an array of ingredientInfo.');
+    delete testRecipe.ingredientObjects;
+    expect(() => makeRecipe(testRecipe)).toThrow('Recipe must have an array of ingredientObjects.');
   });
   test('throws an error if portions is not a positive number', () =>{
     testRecipe.portions = '5htr';
