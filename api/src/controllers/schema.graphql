@@ -2,6 +2,7 @@ type Query{
   getAllIngredients:[Ingredient]
   getAllRecipes:[Recipe]
   getAllSchedules:[Schedule]
+  getSchedules(id:[String!]):[Schedule]
 }
 type Ingredient{
   name: String!
