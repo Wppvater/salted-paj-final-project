@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
+const AddIngredientInput = ({searchData = [], placeholder = '', getSearchValue}) => {
   const [searchValue, setSearchValue] = useState('');
   const [dropdownData, setDropdownData] = useState(null);
   const filterDropdownData = () => {
     const newData = searchData.filter(entry => entry.toLowerCase().includes(searchValue.toLowerCase()));
+    console.log(searchValue, searchData[0],searchData[0].includes(searchValue))
+    console.log(newData);
     setDropdownData(newData.slice(0,5));
   }
   const handleChange = event => {
@@ -12,7 +14,7 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
   }
   const handleSubmit = event => {
     event.preventDefault();
-    getSearchValue(searchValue);
+    getSearchValue(event.target.value);
   }
   const clickDropdown = event => {
     setSearchValue(event.target.textContent);
@@ -22,15 +24,15 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
   }, [searchValue, setSearchValue])
   return (
     <div className="searchbar">
-      <form onSubmit={handleSubmit} className="searchbar__form">
-        <input type="text" value={searchValue} onChange={handleChange} 
-        placeholder={placeholder} className="searchbar__input"/>
-        <div className="searchbar__dropdown" onClick={clickDropdown}>
-          {dropdownData ? dropdownData.map(data => <p>{data}</p>):''}
-        </div>
-      </form>
+      <input type="text" value={searchValue} onChange={handleChange} 
+      placeholder={placeholder} className="searchbar__input"/>
+      <div className="searchbar__dropdown" onClick={clickDropdown}>
+        {dropdownData ? dropdownData.map(data => <p>{data}</p>):''}
+      </div>
+      <input type="number" placeholder="Amount"></input>g
+      
     </div>
   )
 }
 
-export default SearchBar;
+export default AddIngredientInput;

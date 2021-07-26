@@ -1,30 +1,42 @@
 import React from 'react';
 
-const DailySchedule = () => (
-  <div className="schedule__daily-schedule">
+const DailySchedule = ({meals}) => (
+  <div className="daily-schedule">
     <h3 className="daily-schedule__date">Monday 26/7</h3>
-    <div className="daily-schedule-breakfast_section">
-    <h3 className="daily-schedule__meal">Breakfast</h3>
-    <ul className="daily-schedule-breakfast_list">
-      <li key="1" className="daily-schedule-breakfast_item">
-        Garlic spicy italian spaghetti
-      </li>
-      <li key="2" className="daily-schedule-breakfast_item">
-        Coffee
-      </li>
-    </ul>
-    <h3 className="daily-schedule__meal">Lunch</h3>
-    <ul className="daily-schedule-lunch_list">
-      <li key="1" className="daily-schedule-breakfast_item">
-        Barbequed roast beef on a bun
-      </li>
-    </ul>
-    <h3 className="daily-schedule__meal">Dinner</h3>
-    <ul className="daily-schedule-dinner_list">
-      <li key="1" className="daily-schedule-breakfast_item">
-        Balsamic-thyme roasted mus..
-      </li>
-    </ul>
+    <div className="schedule__daily-schedule">
+      {meals.some(meal => meal.mealInDay === 1) ? 
+      <div className="daily-schedule__meal">
+        <h3 className="daily-schedule__meal-header">Breakfast</h3>
+        <ul className="daily-schedule__meal-list">
+          {meals.filter(meal => meal.mealInDay === 1).map(meal => (
+          <li key={meal.id} className="daily-schedule__meal-item">
+            {meal.id}
+          </li>))}
+        </ul>
+      </div> 
+      :''}
+      {meals.some(meal => meal.mealInDay === 2) ? 
+      <div className="daily-schedule__meal">
+        <h3 className="daily-schedule__meal-header">Lunch</h3>
+        <ul className="daily-schedule__meal-list">
+          {meals.filter(meal => meal.mealInDay === 2).map(meal => (
+          <li key={meal.id} className="daily-schedule__meal-item">
+            {meal.id}
+          </li>))}
+        </ul>
+      </div> 
+      :''}
+      {meals.some(meal => meal.mealInDay === 3) ? 
+      <div className="daily-schedule__meal">
+        <h3 className="daily-schedule__meal-header">Dinner</h3>
+        <ul className="daily-schedule__meal-list">
+          {meals.filter(meal => meal.mealInDay === 3).map(meal => (
+          <li key={meal.id} className="daily-schedule__meal-item">
+            {meal.id}
+          </li>))}
+        </ul>
+      </div> 
+      :''}
     </div>
   </div>
 );

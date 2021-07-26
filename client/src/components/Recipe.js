@@ -3,19 +3,17 @@ import MoreRecipeInfo from './MoreRecipeInfo';
 
 const Recipe = ({recipe}) => {
   const [moreInfoClicked, setMoreInfoClicked] = useState(false);
-
+  let ingredientNameArray = [];
+  recipe.ingredients.map(ingredient => ingredientNameArray.push(ingredient.name))
   return (
   <section>
     <div className="recipe__card">
       <h2 className="recipe__name">
-        {console.log(recipe)}
         {recipe.name}
       </h2>
     </div>
     <p className="recipe__ingredients">
-      {recipe.ingredients.map(ingredient => {
-        return ingredient.name + ', '
-      })}
+      {ingredientNameArray.join(', ')}
     </p>
     <p className="recipe__calories">
       {recipe.energy} kcal

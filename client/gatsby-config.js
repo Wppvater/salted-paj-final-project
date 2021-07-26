@@ -13,8 +13,15 @@ module.exports = {
         fieldName: "saltedpaj",
         // Url to query from
         url: "http://localhost:3000/api/",
+        
       },
     },
+    {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: 'http://localhost:3000/api/'
+      }
+    }
   ],
     // Simple config, passing URL
     
