@@ -26,7 +26,7 @@ const IngredientsPage = ({data}) => {
 
 export default IngredientsPage
 
-export const pageQuery = graphql`
+export const ingredientsQuery = graphql`
 query MyQuery {
   saltedpaj {
     getAllIngredients {

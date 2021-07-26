@@ -15,7 +15,7 @@ const MoreRecipeInfo = ({recipe, setMoreInfoClicked}) => {
           {/* name */}
           {recipe.ingredients.map(ingredient => {
             return (
-              <li>{recipe.ingredientObjects.find(i => i.id === ingredient.id).name}  {ingredient.amount}{ingredient.unit}</li>
+              <li>{ingredient.name}  {ingredient.amount}{ingredient.unit}</li>
           )
         })}
         </ul>

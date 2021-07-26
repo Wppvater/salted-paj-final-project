@@ -60,7 +60,7 @@ const buildMakeRecipe = ({validator}) => {
         id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions
       }),
       getAll: () => ({
-        id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions,
+        id, name, instructions, ingredients: ingredients.map((ingredient,index) => ({...ingredient, name:ingredientObjects[index].getName()})), portions,
         energy: ingredientObjects.reduce((totalEnergy, ingredient, index) =>  totalEnergy + ingredient.getEnergy()*ingredients[index].grams/100, 0),
         carbohydrates: ingredientObjects.reduce((totalCarbs, ingredient, index) => totalCarbs + ingredient.getCarbohydrates()*ingredients[index].grams/100, 0),
         protein: ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),

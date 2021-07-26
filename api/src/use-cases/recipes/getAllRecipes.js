@@ -9,7 +9,7 @@ const makeGetAllRecipes = ({ recipesDb, validator, getIngredients }) => {
     const updatedResponses = await Promise.all(dbResponses.map(async response => {
       const ingredientIds = response.ingredients.map(ingredient => ingredient.id);
       const ingredientInfo = await getIngredients(ingredientIds);
-      response.ingredientInfo = ingredientInfo.map(i => ({...i.getAll()}));
+      response.ingredientObjects = ingredientInfo;
       return response;
     }));
     const recipes = await updatedResponses.map(response => makeRecipe(response));

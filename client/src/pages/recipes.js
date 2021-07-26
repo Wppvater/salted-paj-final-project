@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
 import Recipe from "../components/Recipe";
+import { graphql } from 'gatsby';
 
 const mockRecipe = {
   name: 'Spaghetti',
@@ -46,7 +47,9 @@ const mockRecipe = {
   ]
 }
 
-const RecipesPage = () => {
+const RecipesPage = ({data}) => {
+  let recipes = data.saltedpaj.getAllRecipes;
+  console.log(data.saltedpaj);
   return (
     <div class="blur">
     <div class="circle">
@@ -56,7 +59,7 @@ const RecipesPage = () => {
         <title>Recipes Page</title>
         <SearchBar searchData = {['something', 'something else', 'a thrid thing', 'something2','some are','trying']} placeholder = {'Search recipes'}/>
         <ul>
-          <li><Recipe recipe = {mockRecipe}/></li>
+          {recipes.map(recipe =><li><Recipe recipe = {recipe}/></li> )}
         </ul>
       </div>
     <Nav />
@@ -67,3 +70,33 @@ const RecipesPage = () => {
 };
 
 export default RecipesPage;
+
+export const pageQuery = graphql`
+  query recipesQuery {
+    saltedpaj {
+      getAllRecipes {
+        carbohydrates
+        energy
+        fat
+        id
+        instructions
+        name
+        portions
+        protein
+        ingredients {
+          amount
+          grams
+          id
+          unit
+          name
+        }
+        microNutrients {
+          amount
+          name
+          unit
+        }
+      }
+    }
+  }
+
+`

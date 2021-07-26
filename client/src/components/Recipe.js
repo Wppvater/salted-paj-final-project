@@ -8,20 +8,21 @@ const Recipe = ({recipe}) => {
   <section>
     <div className="recipe__card">
       <h2 className="recipe__name">
+        {console.log(recipe)}
         {recipe.name}
       </h2>
     </div>
     <p className="recipe__ingredients">
-      {recipe.ingredientObjects.map(ingredient => {
+      {recipe.ingredients.map(ingredient => {
         return ingredient.name + ', '
       })}
     </p>
     <p className="recipe__calories">
-      {recipe.energy}
+      {recipe.energy} kcal
     </p>
-    <div className="recipe__categories">
+    {/* <div className="recipe__categories">
       Categories
-    </div>
+    </div> */}
     <button className="more-info__button" onClick={() => setMoreInfoClicked(true)}>
       More info
     </button>

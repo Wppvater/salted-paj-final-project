@@ -48,6 +48,7 @@ type ScheduleRecipe{
 }
 
 type RecipeIngredient{
+  name: String
   id: String!
   unit: String!
   amount: Float!
@@ -94,7 +95,6 @@ type ScheduleAddResponse{
   error: String
   schedule: Schedule
 }
-
 
 type Mutation {
   postRecipe(recipeInfo: RecipeAddRequest): RecipeAddResponse!
