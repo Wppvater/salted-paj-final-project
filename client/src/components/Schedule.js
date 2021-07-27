@@ -7,9 +7,11 @@ const Schedule = ({scheduleData}) => {
   for(let i = 1; i < numberOfDays+1; i++){
     days[i-1] = scheduleData.recipes.filter(recipe => recipe.day === i);
   }
+  console.log(numberOfDays,days);
+  console.log(scheduleData);
   return (
     <section>
-      {(days != []) ? days.map(day => <DailySchedule meals={day}/>): ''}
+      {(days != []) ? days.map((day,index) => <DailySchedule meals={day} key={index}/>): ''}
     </section>
   );
 }
