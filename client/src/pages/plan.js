@@ -2,9 +2,10 @@ import * as React from "react";
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import gql from 'graphql-tag';
-import {Query} from 'react-apollo';
+import {Query, useMutation} from 'react-apollo';
 
 const PlanPage = () => {
+  const [addSchedule, { data }] = useMutation(ADD_SCHEDULE);
   return (
     <div class="blur">
     <div class="circle">
@@ -26,6 +27,11 @@ const PlanPage = () => {
             return <p>{data.getAllRecipes[0].name}</p>
           }}
         </Query>
+        <button onClick={e => addSchedule({variables: {
+                name: "Dynamic plan from frontend!!",
+                categories: ['Vegan', 'Vegetarian', 'Peanut-free'],
+                recipes: [{id:'123',portions:4,day:1,mealInDay:1},{id:'ckrevsnvo00013tri09jbdddg',portions:4,day:1,mealInDay:2}]
+                }})}>Make dynamic plan</button>
       </div>
     <Nav />
     </main>
@@ -35,6 +41,29 @@ const PlanPage = () => {
 };
 
 export default PlanPage;
+
+const ADD_SCHEDULE = gql`
+  mutation($name: String!,$categories:[String]!,
+  $recipes: [ScheduleRecipeInput]!) {
+  postSchedule (scheduleInfo:{
+    name: $name
+    categories: $categories
+    recipes: $recipes
+  }) 
+  {
+    error
+    schedule {
+      id
+      name
+      categories
+      recipes {
+        portions
+        day
+      }
+    }
+  }
+}
+`;
 
 const APOLLO_QUERY = gql`
   {
