@@ -3,6 +3,7 @@ type Query{
   getAllRecipes:[Recipe]
   getAllSchedules:[Schedule]
   getSchedules(id:[String!]):[Schedule]
+  getRandomRecipes(numOfRecipes: Int!): [Recipe]
 }
 type Ingredient{
   name: String!
@@ -92,12 +93,24 @@ input ScheduleAddRequest{
   categories: [String]!
   recipes: [ScheduleRecipeInput]!
 }
+
 type ScheduleAddResponse{
   error: String
   schedule: Schedule
 }
 
+input ScheduleRandomRecipesRequest{
+  name: String!
+  categories: [String]
+  days: Int!
+  portions: Float!
+  breakfast: Boolean
+  lunch: Boolean
+  dinner: Boolean
+}
+
 type Mutation {
   postRecipe(recipeInfo: RecipeAddRequest): RecipeAddResponse!
   postSchedule(scheduleInfo: ScheduleAddRequest): ScheduleAddResponse!
+  postScheduleRandomRecipes(scheduleInfo: ScheduleRandomRecipesRequest): ScheduleAddResponse!
 }
