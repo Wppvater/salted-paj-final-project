@@ -10,7 +10,7 @@ const DailySchedule = ({meals}) => (
         <ul className="daily-schedule__meal-list">
           {meals.filter(meal => meal.mealInDay === 1).map(meal => (
           <li key={meal.id+meal.day+meal.mealInDay} className="daily-schedule__meal-item">
-            {meal.id}
+            {meal.name}
           </li>))}
         </ul>
       </div> 
@@ -21,7 +21,7 @@ const DailySchedule = ({meals}) => (
         <ul className="daily-schedule__meal-list">
           {meals.filter(meal => meal.mealInDay === 2).map(meal => (
           <li key={meal.id+meal.day+meal.mealInDay} className="daily-schedule__meal-item">
-            {meal.id}
+            {meal.name}
           </li>))}
         </ul>
       </div> 
@@ -32,7 +32,7 @@ const DailySchedule = ({meals}) => (
         <ul className="daily-schedule__meal-list">
           {meals.filter(meal => meal.mealInDay === 3).map(meal => (
           <li key={meal.id+meal.day+meal.mealInDay} className="daily-schedule__meal-item">
-            {meal.id}
+            {meal.name}
           </li>))}
         </ul>
       </div> 

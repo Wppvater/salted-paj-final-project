@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from 'react';
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
@@ -9,19 +9,34 @@ import { graphql } from 'gatsby';
 
 const RecipesPage = ({data}) => {
   // const [addSchedule, { data }] = useMutation(ADD_SCHEDULE);
-  console.log(data.saltedpaj.getAllIngredients)
   const [clickedNewRecipeButton, setClickedNewRecipeButton] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   let recipes = data.saltedpaj.getAllRecipes;
+  const [displayRecipes, setDisplayRecipes] = useState(recipes);
+  const filterDropdownData = () => {
+    const newData = recipes.filter(entry => entry.name.toLowerCase().includes(searchValue.toLowerCase()));
+    setDisplayRecipes(newData);
+  }
+  const handleChange = event => {
+    setSearchValue(event.target.value);
+  }
+  useEffect(() => {
+    filterDropdownData();
+  }, [searchValue, setSearchValue])
   return (
-    <div class="blur">
-    <div class="circle">
+    <div className="blur">
+    <div className="circle">
     <main >
       <Logo />
       <div className="main__div">
         <title>Recipes Page</title>
-        <SearchBar searchData = {[{display:'something',value:'1'}]} placeholder = {'Search recipes'}/>
+        <div className="searchbar">
+        <input type="text" value={searchValue} onChange={handleChange} 
+        placeholder={"Search recipes"} className="searchbar__input "/>
+
+        </div>
         <ul>
-          {recipes.map(recipe =><li><Recipe recipe = {recipe}/></li> )}
+          {displayRecipes.map(recipe =><li key={recipe.id}><Recipe recipe = {recipe}/></li> )}
         </ul>
       </div>
       <button onClick={() => setClickedNewRecipeButton(true)}>New recipe</button>

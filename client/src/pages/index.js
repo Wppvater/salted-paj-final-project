@@ -50,6 +50,9 @@ const GetAllSchedulesQuery = gql`
           mealInDay
           portions
         }
+        recipeObjects{
+          name
+        }
       }
   }
 `

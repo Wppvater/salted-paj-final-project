@@ -40,6 +40,7 @@ type Schedule{
   name: String!
   categories: [String]
   recipes: [ScheduleRecipe]!
+  recipeObjects: [ScheduleRecipeObject]!
 }
 
 type ScheduleRecipe{
@@ -47,6 +48,9 @@ type ScheduleRecipe{
   day: Int!
   mealInDay: Int!
   portions: Float!
+}
+type ScheduleRecipeObject{
+  name: String!
 }
 
 type RecipeIngredient{

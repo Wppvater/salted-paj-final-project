@@ -9,7 +9,7 @@ const makeCreateRecipe = ({ recipesDb, validator, Id, getIngredients }) => {
     const recipeToDb = {...recipeInput};
     const ingredientIds = recipeInput.ingredients.map(ingredient => ingredient.id);
     const ingredientInfo = await getIngredients(ingredientIds);
-    recipeInput.ingredientObjects = ingredientInfo;
+    recipeInput.ingredientInfo = ingredientInfo;
     const recipe = makeRecipe(recipeInput);
 
     await recipesDb.add(recipeToDb);

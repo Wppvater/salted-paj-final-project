@@ -3,13 +3,14 @@ import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import gql from 'graphql-tag';
 import {Query, useMutation} from 'react-apollo';
+import { navigate } from "gatsby";
 
 const PlanPage = () => {
   
   const clickMealButton = (mealState, setMealState) => {
     mealState ? setMealState(false) : setMealState(true);
   }
-
+  
   const [name, setName] = useState('');
   const [days, setDays] = useState(1);
   const [portions, setPortions] = useState(1);
@@ -18,6 +19,18 @@ const PlanPage = () => {
   const [dinner, setDinner] = useState(false);
   const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
   
+  const submitSchedule = () => {
+    generateSchedule({variables: {
+      name,
+      days: Number(days),
+      portions: Number(portions),
+      breakfast,
+      lunch,
+      dinner,
+      }});
+      navigate("/", { replace: true })
+  }
+
   return (
     <div className="blur">
       <div className="circle">
@@ -25,10 +38,6 @@ const PlanPage = () => {
           <Logo />
           <div className="main__div">
             <title>plan Page</title>
-            {/* <h1>
-              LOGO
-            </h1>
-            */}
             <h2>
               PLAN YOUR SCHEDULE
             </h2> 
@@ -54,14 +63,7 @@ const PlanPage = () => {
                 return <p>{data.getRandomRecipes[0].name}</p>
               }}
             </Query> */}
-            <button onClick={() => generateSchedule({variables: {
-                    name,
-                    days: Number(days),
-                    portions: Number(portions),
-                    breakfast,
-                    lunch,
-                    dinner,
-                    }})}>Save plan</button>
+            <button onClick={() => submitSchedule()}>Save plan</button>
           </div>
         <Nav />
         </main>
