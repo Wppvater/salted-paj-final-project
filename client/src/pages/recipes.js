@@ -28,9 +28,9 @@ const RecipesPage = ({data}) => {
     <div className="circle">
     <main >
       <Logo />
-      <div className="main__div">
+      <div className="main__div main__recipes">
         <title>Recipes Page</title>
-        <div className="searchbar">
+        <div className="searchbar recipes__searchbar">
         <input type="text" value={searchValue} onChange={handleChange} 
         placeholder={"Search recipes"} className="searchbar__input "/>
 
@@ -39,7 +39,10 @@ const RecipesPage = ({data}) => {
           {displayRecipes.map(recipe =><li key={recipe.id}><Recipe recipe = {recipe}/></li> )}
         </ul>
       </div>
-      <button onClick={() => setClickedNewRecipeButton(true)}>New recipe</button>
+      <div className="recipe__new">
+      <button onClick={() => setClickedNewRecipeButton(true)} className="recipe__new-button">+</button>
+      <p className="recipe__new-text">New recipe</p>
+      </div>
       {clickedNewRecipeButton ? <CreateNewRecipe setClickedNewRecipeButton = {setClickedNewRecipeButton}
                                   ingredientsData={data.saltedpaj.getAllIngredients}/> : ''}
     <Nav />

@@ -36,24 +36,57 @@ const PlanPage = () => {
       <div className="circle">
         <main >
           <Logo />
-          <div className="main__div">
+          <div className="main__div main__plan">
             <title>plan Page</title>
-            <h2>
+            <h2 className="plan__header">
               PLAN YOUR SCHEDULE
             </h2> 
-            <section className="schedule__options">
-            <form className="schedule__form">
-              Name
-              <input className="schedule__form__name" type="test" placeholder='Schedule name' onChange={e => setName(e.target.value)} />
-              Days
-              <input className="schedule__form__days" type="number" placeholder='Days' onChange={e => setDays(e.target.value)} />
-              Portions
-              <input className="schedule__form__portions" type="number" placeholder='Portions' onChange={e => setPortions(e.target.value)} />
-            </form>
-            Meals in one days
-            <button className="schedule__meals-in-day" onClick={() => clickMealButton(breakfast, setBreakfast)}>Breakfast</button>
-            <button className="schedule__meals-in-day" onClick={() => clickMealButton(lunch, setLunch)}>Lunch</button>
-            <button className="schedule__meals-in-day" onClick={() => clickMealButton(dinner, setDinner)}>Dinner</button>
+            <section className="plan__options">
+              <form className="plan__form">
+                <p className="plan__headers">
+                Days
+                </p>
+                <div class="plan__days">
+                  <input type="range" min="1" max="7" className="days__slider" />
+                  <ul className="days__numbers">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                  </ul>
+                </div>
+                <input className="plan__form__name" type="test" placeholder='Enter schedule name...' onChange={e => setName(e.target.value)} />
+                {/* <input className="schedule__form__days" type="number" placeholder='Days' onChange={e => setDays(e.target.value)} /> */}
+                {/* Portions
+                <input className="plan__form__portions" type="number" placeholder='Portions' onChange={e => setPortions(e.target.value)} /> */}
+                <p className="plan__headers">
+                Portions
+                </p>
+                <div class="plan__days">
+                  <input type="range" min="1" max="8" className="days__slider" />
+                  <ul className="days__numbers">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                  </ul>
+                </div>
+              </form>
+              <p className="plan__headers">
+                Meals in one day
+              </p>
+              {/* <button className="plan__meals-in-day" onClick={() => clickMealButton(breakfast, setBreakfast)}>Breakfast</button> */}
+              <div className="plan__buttons">
+              <button className="plan__meals-in-day" onClick={() => clickMealButton(lunch, setLunch)}>Lunch</button>
+              <button className="plan__meals-in-day" onClick={() => clickMealButton(dinner, setDinner)}>Dinner</button>
+              </div>
             </section>
 
             {/* <Query query={APOLLO_QUERY}>
@@ -63,7 +96,7 @@ const PlanPage = () => {
                 return <p>{data.getRandomRecipes[0].name}</p>
               }}
             </Query> */}
-            <button onClick={() => submitSchedule()}>Save plan</button>
+            <button onClick={() => submitSchedule()} className="plan__save">Save Schedule</button>
           </div>
         <Nav />
         </main>

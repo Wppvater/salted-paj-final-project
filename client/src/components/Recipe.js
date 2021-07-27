@@ -8,14 +8,16 @@ const Recipe = ({recipe}) => {
   return (
   <section>
     <div className="recipe__card">
+      <div className="recipe__first-line">
       <h2 className="recipe__name">
         {recipe.name}
       </h2>
+      <p className="recipe__calories">
+        {recipe.energy} kcal
+      </p>
+    </div>
     <p className="recipe__ingredients">
       {ingredientNameArray.join(', ')}
-    </p>
-    <p className="recipe__calories">
-      {recipe.energy} kcal
     </p>
     {/* <div className="recipe__categories">
       Categories

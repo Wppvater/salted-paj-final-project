@@ -5,7 +5,9 @@ $primary-color: #1D153A;
 $secondary-color: #878395;
 $tertiary-color: #FCB374;
 $quartery-color: #FDFDFC;
-$fifth-color: #F4F4F5;
+$fifth-color: rgba(255, 255, 255, 0.6);
+$sixth-color: #F0F0F0;
+$seventh-color: #A668F3;
 
 * {
   font-family: 'Karla', sans-serif;
@@ -46,6 +48,23 @@ main {
 .main__div {
   overflow: scroll;
   height: calc(100vh - 120px);
+}
+
+@mixin button {
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.6rem;
+}
+
+@mixin input {
+  padding: 0.2rem 0.5rem;
+  height: 1.8rem;
+  width: 12rem;
+  border-radius: 1rem;
+  background-color: #EDEDED;
+  border: 1px solid black;
+  outline: none;
+  margin: auto;
 }
 
 @mixin nav {
@@ -156,14 +175,7 @@ main {
   // }
   
   .searchbar__input {
-    padding: 0.2rem 0.5rem;
-    height: 1.5rem;
-    width: 12rem;
-    border-radius: 1rem;
-    background-color: #EDEDED;
-    border: 1px solid black;
-    outline: none;
-    margin: auto;
+    @include input;
   }
   
 }
@@ -174,20 +186,165 @@ main {
   // z-index: 5;
 }
 
-.recipe__card {
-  background-color: $quartery-color;
+.main__plan {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.plan__header {
+  margin: 5rem 0 1rem;
+  font-size: 1rem;
+}
+
+.plan__options {
+  background-color: $fifth-color;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  width: 80%;
+  border-radius: 0.5rem;
+}
+
+.plan__headers {
+  text-align: left;
+  color: $secondary-color;
+  margin: 0.5rem 0 0 1.5rem;
+}
+
+.days__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80%; /* Full-width */
+  height: 5px; /* Specified height */
+  background: $primary-color; /* Grey background */
+}
+
+.days__slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  width: 12px; /* Set a specific slider handle width */
+  height: 12px; /* Slider handle height */
+  background: $primary-color; /* Green background */
+  border-radius: 15px;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 12px; /* Set a specific slider handle width */
+  height: 12px; /* Slider handle height */
+  background: $primary-color; /* Green background */
+  border-radius: 15px;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.days__numbers {
+  width: 88%;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.plan__form__name {
+  @include input;
+  margin: 0.5rem 0;
+  background-color: $sixth-color;
+  // margin: auto;
+}
+
+.plan__buttons {
+  display: flex;
+  justify-content: left;
+  margin-left: 0.5rem;
+}
+
+.plan__meals-in-day {
+  @include button;
+  background-color: $primary-color;
+  color: $sixth-color;
+  margin: 0.5rem 1rem;
+}
+
+.plan__save {
+  @include button;
+  margin: 2rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  background-color: $tertiary-color;
+  color: white;
+}
+
+.main__recipes {
+  height: calc(100vh - 190px);
+}
+
+.recipes__searchbar {
+  background-color: white;
+  padding: 1.5rem 0;
+}
+
+.recipe__card {
+  background-color: $quartery-color;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   margin: 1rem;
   border-radius: 0.5rem;
+
+  .recipe__first-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem 0 0.5rem;
+    padding: 0.5rem 0 0.5rem;
+  }
   
-  h2 {
+  .recipe__name {
     text-align: left;
+    font-size: 1rem;
+  }
+
+  .recipe__calories {
+    color: $secondary-color;
   }
   
   .recipe__ingredients {
+    margin: 0 0 0 0.5rem;
+    color: $secondary-color;
     text-align: left;
     width: 80%;
+  }
+
+  .more-info__button {
+    @include button;
+    background-color: $seventh-color;
+    color: $quartery-color;
+    // display: flex;
+    margin: 0 0 1rem 15rem;
+    // justify-content: right;
+  }
+
+}
+
+.recipe__new {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: center;
+
+  .recipe__new-button {
+    @include button;
+    font-size: 3rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: $tertiary-color;
+    color: $fifth-color;
+  }
+  
+  .recipe__new-text {
+    color: $tertiary-color;
+    font-size: 1rem;
+
   }
 }
