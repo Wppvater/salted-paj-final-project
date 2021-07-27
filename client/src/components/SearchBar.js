@@ -4,15 +4,15 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
   const [searchValue, setSearchValue] = useState('');
   const [dropdownData, setDropdownData] = useState(null);
   const filterDropdownData = () => {
-    const newData = searchData.filter(entry => entry.toLowerCase().includes(searchValue.toLowerCase()));
-    setDropdownData(newData.slice(0,5));
+    const newData = searchData.filter(entry => entry.display.toLowerCase().includes(searchValue.toLowerCase()));
+    setDropdownData(newData.slice(0,20));
   }
   const handleChange = event => {
     setSearchValue(event.target.value);
   }
   const handleSubmit = event => {
     event.preventDefault();
-    getSearchValue(searchValue);
+    getSearchValue(searchData.find(entry => entry.display.toLowerCase().match(searchValue.toLowerCase())).value);
   }
   const clickDropdown = event => {
     setSearchValue(event.target.textContent);
@@ -26,7 +26,7 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
         <input type="text" value={searchValue} onChange={handleChange} 
         placeholder={placeholder} className="searchbar__input"/>
         <div className="searchbar__dropdown" onClick={clickDropdown}>
-          {dropdownData ? dropdownData.map(data => <p>{data}</p>):''}
+          {dropdownData ? dropdownData.map(data => <p>{data.display}</p>):''}
         </div>
       </form>
     </div>

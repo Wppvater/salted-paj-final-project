@@ -9,7 +9,7 @@ const makeCreateRecipe = ({ recipesDb, validator, Id, getIngredients }) => {
     const recipeToDb = {...recipeInput};
     const ingredientIds = recipeInput.ingredients.map(ingredient => ingredient.id);
     const ingredientInfo = await getIngredients(ingredientIds);
-    recipeInput.ingredientInfo = ingredientInfo.map(i => ({...i.getAll()}));
+    recipeInput.ingredientObjects = ingredientInfo;
     const recipe = makeRecipe(recipeInput);
 
     await recipesDb.add(recipeToDb);
@@ -17,16 +17,7 @@ const makeCreateRecipe = ({ recipesDb, validator, Id, getIngredients }) => {
     const updatedResponses = await Promise.all(dbResponses.map(async response => {
       const ingredientIds = response.ingredients.map(ingredient => ingredient.id);
       const ingredientInfo = await getIngredients(ingredientIds);
-      response.ingredientInfo = ingredientInfo.map(i => ({
-        id: i.getId(),
-        name: i.getName(),
-        group: i.getGroup(),
-        energy: i.getEnergy(),
-        carbohydrates: i.getCarbohydrates(),
-        fat: i.getFat(),
-        protein: i.getProtein(),
-        microNutrients: i.getMicroNutrients(),
-      }));
+      response.ingredientObjects = ingredientInfo;
       return response;
     }));
     const dbRecipe = updatedResponses.map(response => makeRecipe(response))[0];

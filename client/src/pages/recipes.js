@@ -5,10 +5,11 @@ import SearchBar from "../components/SearchBar";
 import Recipe from "../components/Recipe";
 import CreateNewRecipe from '../components/CreateNewRecipe'
 import { graphql } from 'gatsby';
-
-
+// import {Query, useMutation} from 'react-apollo';
 
 const RecipesPage = ({data}) => {
+  // const [addSchedule, { data }] = useMutation(ADD_SCHEDULE);
+  console.log(data.saltedpaj.getAllIngredients)
   const [clickedNewRecipeButton, setClickedNewRecipeButton] = useState(false);
   let recipes = data.saltedpaj.getAllRecipes;
   return (
@@ -18,13 +19,14 @@ const RecipesPage = ({data}) => {
       <Logo />
       <div className="main__div">
         <title>Recipes Page</title>
-        <SearchBar searchData = {['something', 'something else', 'a thrid thing', 'something2','some are','trying']} placeholder = {'Search recipes'}/>
+        <SearchBar searchData = {[{display:'something',value:'1'}]} placeholder = {'Search recipes'}/>
         <ul>
           {recipes.map(recipe =><li><Recipe recipe = {recipe}/></li> )}
         </ul>
       </div>
       <button onClick={() => setClickedNewRecipeButton(true)}>New recipe</button>
-      {clickedNewRecipeButton ? <CreateNewRecipe setClickedNewRecipeButton = {setClickedNewRecipeButton}/> : ''}
+      {clickedNewRecipeButton ? <CreateNewRecipe setClickedNewRecipeButton = {setClickedNewRecipeButton}
+                                  ingredientsData={data.saltedpaj.getAllIngredients}/> : ''}
     <Nav />
     </main>
     </div>
@@ -59,7 +61,42 @@ export const pageQuery = graphql`
           unit
         }
       }
+      getAllIngredients {
+          carbohydrates
+          energy
+          fat
+          group
+          id
+          name
+          protein
+          microNutrients {
+            amount
+            name
+            unit
+          }
+        }
     }
   }
 
 `
+// export const pageQuery = graphql`
+//   query recipeIngredientsQuery {
+//       saltedpaj {
+//         getAllIngredients {
+//           carbohydrates
+//           energy
+//           fat
+//           group
+//           id
+//           name
+//           protein
+//           microNutrients {
+//             amount
+//             name
+//             unit
+//           }
+//         }
+//       }
+//   }
+
+// `

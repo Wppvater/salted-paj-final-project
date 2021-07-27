@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
+import {Query, useMutation} from 'react-apollo';
 import SearchBar from './SearchBar';
 
-const CreateNewRecipe = ({setClickedNewRecipeButton}) => {
+const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   const [name, setName] = useState('');
-  const [portions, setPortions] = useState('');
+  const [portions, setPortions] = useState(1);
   const [ingredients, setIngredients] = useState([]);
   const [recipeInstruction, setRecipeInstruction] = useState([]);
-  
+  const [addRecipe, { data:addRecipeData }] = useMutation(ADD_RECIPE);
+  console.log(ingredientsData);
   const handleSubmit = event => {
     event.preventDefault();
+    console.log({name: name,
+      instructions:recipeInstruction,
+      portions: portions,
+      ingredients: ingredients,})
+    addRecipe({variables:{
+      name: name,
+      instructions:recipeInstruction,
+      portions: Number(portions),
+      ingredients: ingredients,
+    }});
   }
   const addIngredient = ingr => {
-    setIngredients([...ingredients, {name:ingr, unit:'grams',amount:0, id: ingredients.length}]);
+    console.log(ingr);
+    setIngredients([...ingredients, {grams:0, unit:'grams',amount:0, id: ingr}]);
     // console.log(ingr, [...ingredients, {name:ingr, unit:'grams',amount:0, id: ingredients.length}])
   }
   const changeAmount = (amount, id) => {
     const ingredient = ingredients.find(ingredient => ingredient.id === id);
     const arr = ingredients.filter(ingredient => ingredient.id !== id);
-    ingredient.amount = amount;
+    ingredient.amount = Number(amount);
+    ingredient.grams = ingredient.amount;
     setIngredients([...arr,ingredient]);
   }
 
@@ -34,14 +48,13 @@ const CreateNewRecipe = ({setClickedNewRecipeButton}) => {
         <input type="number" value={portions} onChange={event => setPortions(event.target.value)} 
         placeholder='Recipe portions' className="new-recipe__input__portions"/>
       </form>
-        <SearchBar searchData = {['Meatball', 'Ground meat','Bird','Chicken','Pasta','6th item']}
+        <SearchBar searchData = {ingredientsData.map(ingredient => ({display: ingredient.name,value:ingredient.id}))}
           placeholder = 'Search for ingredient'
           getSearchValue={addIngredient} />
           <ul>
           {ingredients.map(ingredient => {
             return (<li>
-              {console.log(ingredient, 'inside li')}
-              {ingredient.name}
+              {ingredientsData.find(ingredientData => ingredientData.id === ingredient.id).name}
               <input type="number" placeholder="Amount" onChange={e => changeAmount(e.target.value, ingredient.id)}></input>g
             </li>
           )})}
@@ -50,7 +63,10 @@ const CreateNewRecipe = ({setClickedNewRecipeButton}) => {
       <button onClick={() => setClickedNewRecipeButton(false)}>
         Cancel
       </button>
-      <button onClick={() => setClickedNewRecipeButton(false)}>
+      <button onClick={(e) => {
+        handleSubmit(e);
+        setClickedNewRecipeButton(false);
+        }}>
         Submit
       </button>
     </section>
@@ -59,32 +75,29 @@ const CreateNewRecipe = ({setClickedNewRecipeButton}) => {
 
 export default CreateNewRecipe;
 
-export const pageQuery = graphql`
-  mutation recipeMutation {
-    saltedpaj {
-      getAllRecipes {
-        carbohydrates
-        energy
-        fat
+const ADD_RECIPE = gql`
+  mutation($name: String!,$instructions:[String]!, $portions: Float!
+  $ingredients: [RecipeIngredientInput]!) {
+    postRecipe (recipeInfo:{
+    name: $name
+    instructions: $instructions
+    portions: $portions
+    ingredients: $ingredients
+  }) 
+  {
+    error
+    recipe {
+      id
+      name
+      instructions
+      energy
+      ingredients {
         id
-        instructions
-        name
-        portions
-        protein
-        ingredients {
-          amount
-          grams
-          id
-          unit
-          name
-        }
-        microNutrients {
-          amount
-          name
-          unit
-        }
+        unit
+        amount
+        grams
       }
     }
   }
-
-`
+}
+`;
