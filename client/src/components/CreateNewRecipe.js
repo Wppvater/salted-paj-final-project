@@ -13,7 +13,7 @@ const CreateNewRecipe = ({setClickedNewRecipeButton}) => {
   }
   const addIngredient = ingr => {
     setIngredients([...ingredients, {name:ingr, unit:'grams',amount:0, id: ingredients.length}]);
-    console.log(ingr, [...ingredients, {name:ingr, unit:'grams',amount:0, id: ingredients.length}])
+    // console.log(ingr, [...ingredients, {name:ingr, unit:'grams',amount:0, id: ingredients.length}])
   }
   const changeAmount = (amount, id) => {
     const ingredient = ingredients.find(ingredient => ingredient.id === id);

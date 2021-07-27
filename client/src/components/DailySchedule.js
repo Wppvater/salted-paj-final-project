@@ -2,7 +2,7 @@ import React from 'react';
 
 const DailySchedule = ({meals}) => (
   <div className="daily-schedule">
-    <h3 className="daily-schedule__date">Monday 26/7</h3>
+    <h3 className="daily-schedule__date">Monday</h3>
     <div className="schedule__daily-schedule">
       {meals.some(meal => meal.mealInDay === 1) ? 
       <div className="daily-schedule__meal">

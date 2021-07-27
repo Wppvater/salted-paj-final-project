@@ -11,7 +11,6 @@ const Recipe = ({recipe}) => {
       <h2 className="recipe__name">
         {recipe.name}
       </h2>
-    </div>
     <p className="recipe__ingredients">
       {ingredientNameArray.join(', ')}
     </p>
@@ -24,6 +23,7 @@ const Recipe = ({recipe}) => {
     <button className="more-info__button" onClick={() => setMoreInfoClicked(true)}>
       More info
     </button>
+    </div>
     <div className="recipe__more-info">
       {moreInfoClicked ? 
       <MoreRecipeInfo recipe={recipe} setMoreInfoClicked={setMoreInfoClicked}/>

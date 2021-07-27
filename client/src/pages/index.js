@@ -8,7 +8,6 @@ import '../styles/sass.scss';
 
 const IndexPage = ({data}) => {
   const scheduleData = data.saltedpaj.getAllSchedules[0];
-  console.log(scheduleData);
   return (
     <div className="blur">
     <div className="circle">
