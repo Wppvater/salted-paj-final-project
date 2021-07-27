@@ -5,7 +5,6 @@ import Logo from "../components/Logo";
 import Schedule from "../components/Schedule";
 import '../styles/sass.scss';
 
-
 const IndexPage = ({data}) => {
   const scheduleData = data.saltedpaj.getAllSchedules[0];
   return (
