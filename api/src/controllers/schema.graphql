@@ -40,6 +40,7 @@ type Schedule{
   id: String!
   name: String!
   categories: [String]
+  startDate: String
   recipes: [ScheduleRecipe]!
   recipeObjects: [ScheduleRecipeObject]!
 }
@@ -98,6 +99,7 @@ input ScheduleAddRequest{
   name: String!
   categories: [String]!
   recipes: [ScheduleRecipeInput]!
+  startDate: String!
 }
 
 type ScheduleAddResponse{
@@ -113,6 +115,7 @@ input ScheduleRandomRecipesRequest{
   breakfast: Boolean
   lunch: Boolean
   dinner: Boolean
+  startDate: String!
 }
 
 type Mutation {

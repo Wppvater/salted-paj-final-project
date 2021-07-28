@@ -7,9 +7,9 @@ import { navigate } from "gatsby";
 
 const PlanPage = () => {
 
-  useEffect(() => {
+  // useEffect(() => {
     
-  }, [])
+  // }, [])
   
   const clickSelectButton = (event, buttonState, setButtonState) => {
     buttonState ? setButtonState(false) : setButtonState(true);

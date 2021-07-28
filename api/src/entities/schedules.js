@@ -5,6 +5,7 @@ const buildMakeSchedule = ({validator}) => {
     recipes,
     recipeObjects,
     categories,
+    startDate,
   } = {}) => {
     validator.validateType({type:'string', data: id, errorMessage:'Schedule must have id.'})
     validator.validateType({type:'string', data: name, errorMessage:'Schedule must have name and be a string.'})
@@ -23,11 +24,12 @@ const buildMakeSchedule = ({validator}) => {
       getCategories: () => [...categories],
       getRecipes: () => [...recipes],
       getRecipeObjects: () => [...recipeObjects],
+      getStartDate: () => startDate,
       getDbStore: () => ({
-        id, name, recipes, categories
+        id, name, recipes, categories, startDate
       }),
       getAll: () => ({
-        id, name, recipes: [...recipes], recipeObjects: [...recipeObjects], categories: [...categories]
+        id, name, recipes: [...recipes], recipeObjects: [...recipeObjects], categories: [...categories], startDate
       })
     });
   };

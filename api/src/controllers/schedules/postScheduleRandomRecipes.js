@@ -29,6 +29,7 @@ const postScheduleRandomRecipes = async (parent, { scheduleInfo }) => {
     name: scheduleInfo.name,
     categories: scheduleInfo.categories || ['None'],
     recipes: recipes,
+    startDate: scheduleInfo.startDate,
   }
   const newSchedule = await schedulesService.createSchedule(schedule);
   const scheduleToReturn = { ...newSchedule.getAll() }

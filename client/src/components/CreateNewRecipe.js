@@ -10,12 +10,13 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   const [recipeInstruction, setRecipeInstruction] = useState([]);
   const [addRecipe, { data:addRecipeData }] = useMutation(ADD_RECIPE);
   console.log(ingredientsData);
+
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({name: name,
-      instructions:recipeInstruction,
-      portions: portions,
-      ingredients: ingredients,})
+    // console.log({name: name,
+    //   instructions:recipeInstruction,
+    //   portions: portions,
+    //   ingredients: ingredients,})
     addRecipe({variables:{
       name: name,
       instructions:recipeInstruction,
@@ -24,7 +25,7 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
     }});
   }
   const addIngredient = ingr => {
-    console.log(ingr);
+    // console.log(ingr);
     setIngredients([...ingredients, {grams:0, unit:'grams',amount:0, id: ingr}]);
   }
   const changeAmount = (amount, id) => {

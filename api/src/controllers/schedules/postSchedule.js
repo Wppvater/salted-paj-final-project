@@ -4,6 +4,7 @@ const postSchedule = async ({ scheduleInfo }) => {
     name: scheduleInfo.name,
     categories: scheduleInfo.categories,
     recipes: scheduleInfo.recipes,
+    startDate: scheduleInfo.startDate,
   }
   const newSchedule = await schedulesService.createSchedule(schedule);
   const scheduleToReturn = { ...newSchedule.getAll() }
