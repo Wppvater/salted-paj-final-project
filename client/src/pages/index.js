@@ -53,6 +53,7 @@ const GetAllSchedulesQuery = gql`
         recipeObjects{
           name
         }
+        startDate
       }
   }
 `

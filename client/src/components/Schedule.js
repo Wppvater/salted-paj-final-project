@@ -8,7 +8,6 @@ const Schedule = ({scheduleData}) => {
   for(let i = 1; i < numberOfDays+1; i++){
     days[i-1] = scheduleData.recipes.filter(recipe => recipe.day === i);
   }
-  console.log(numberOfDays,days);
   console.log(scheduleData);
   return (
     <section>

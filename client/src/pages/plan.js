@@ -11,14 +11,19 @@ const PlanPage = () => {
     
   }, [])
   
-  const clickMealButton = (event, mealState, setMealState) => {
-    mealState ? setMealState(false) : setMealState(true);
+  const clickSelectButton = (event, buttonState, setButtonState) => {
+    buttonState ? setButtonState(false) : setButtonState(true);
     event.target.classList.toggle('plan__meals-in-day_selected');
   }
   
   const [name, setName] = useState('');
   const [days, setDays] = useState(1);
+  const [vegetarian, setVegetarian] = useState(false);
+  const [vegan, setVegan] = useState(false);
+  const [breakfastCategory, setBreakfastCategory] = useState(false);
   const [portions, setPortions] = useState(1);
+  // Set start date to be the next day
+  const [startDate, setStartDate] = useState(null);
   const [breakfast, setBreakfast] = useState(false);
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
@@ -29,6 +34,7 @@ const PlanPage = () => {
       name,
       days: Number(days),
       portions: Number(portions),
+      startDate,
       breakfast,
       lunch,
       dinner,
@@ -47,12 +53,12 @@ const PlanPage = () => {
               PLAN YOUR SCHEDULE
             </h2> 
             <section className="plan__options">
-            <p className="plan__optin__headers">
+            <p className="plan__option__headers">
                 Your schedule name
                 </p>
             <input className="plan__form__name" type="test" placeholder='Enter schedule name' onChange={e => setName(e.target.value)} />
               <form className="plan__form">
-                <p className="plan__optin__headers">
+                <p className="plan__option__headers">
                 Days
                 </p>
                 <div className="plan__days">
@@ -70,7 +76,7 @@ const PlanPage = () => {
                 {/* <input className="schedule__form__days" type="number" placeholder='Days' onChange={e => setDays(e.target.value)} /> */}
                 {/* Portions
                 <input className="plan__form__portions" type="number" placeholder='Portions' onChange={e => setPortions(e.target.value)} /> */}
-                <p className="plan__optin__headers">
+                <p className="plan__option__headers">
                 Portions
                 </p>
                 <div className="plan__days">
@@ -89,13 +95,27 @@ const PlanPage = () => {
                   </ul>
                 </div>
               </form>
-              <p className="plan__optin__headers">
+              <p className="plan__option__headers">
+                Start date
+              </p>
+                <input type="date" onChange={e => setStartDate(e.target.value)} />
+              <p className="plan__option__headers">
                 Meals in one day
               </p>
-              {/* <button className="plan__meals-in-day" onClick={() => clickMealButton(breakfast, setBreakfast)}>Breakfast</button> */}
+              {/* <button className="plan__meals-in-day" onClick={() => clickSelectButton(breakfast, setBreakfast)}>Breakfast</button> */}
               <div className="plan__buttons">
-                <button className="plan__meals-in-day" onClick={event => clickMealButton(event, lunch, setLunch)}>Lunch</button>
-                <button className="plan__meals-in-day" onClick={event => clickMealButton(event, dinner, setDinner)}>Dinner</button>
+                <button className="plan__meals-in-day" onClick={event => clickSelectButton(event, breakfast, setBreakfast)}>Breakfast</button>
+                <button className="plan__meals-in-day" onClick={event => clickSelectButton(event, lunch, setLunch)}>Lunch</button>
+                <button className="plan__meals-in-day" onClick={event => clickSelectButton(event, dinner, setDinner)}>Dinner</button>
+              </div>
+              <p className="plan__option__headers">
+                Categories
+              </p>
+              {/* <button className="plan__meals-in-day" onClick={() => clickSelectButton(breakfast, setBreakfast)}>Breakfast</button> */}
+              <div className="plan__buttons">
+                <button className="plan__categories" onClick={event => clickSelectButton(event, vegetarian, setVegetarian)}>Vegetarian</button>
+                <button className="plan__categories" onClick={event => clickSelectButton(event, vegan, setVegan)}>Vegan</button>
+                <button className="plan__categories" onClick={event => clickSelectButton(event, breakfastCategory, setBreakfastCategory)}>Breakfast</button>
               </div>
             </section>
 
@@ -141,12 +161,13 @@ export default PlanPage;
 // `;
 
 const GENERATE_SCHEDULE = gql`
-  mutation($name: String!, $categories: [String], $days: Int!, $portions: Float!, $breakfast: Boolean, $lunch: Boolean, $dinner: Boolean) {
+  mutation($name: String!, $categories: [String], $days: Int!, $portions: Float!, $startDate: String $breakfast: Boolean, $lunch: Boolean, $dinner: Boolean) {
     postScheduleRandomRecipes(scheduleInfo: {
         name: $name
         categories: $categories
         days: $days
         portions: $portions
+        startDate: $startDate
         breakfast: $breakfast
         lunch: $lunch
         dinner: $dinner
