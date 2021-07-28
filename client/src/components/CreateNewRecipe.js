@@ -41,33 +41,35 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
 
   return (
     <section className="recipe__new-recipe">
-      <form onSubmit={handleSubmit} className="new-recipe__form">
-        <input type="text" value={name} onChange={event => setName(event.target.value)} 
-        placeholder='Recipe name' className="new-recipe__input__name"/>
-        <input type="number" value={portions} onChange={event => setPortions(event.target.value)} 
-        placeholder='Recipe portions' className="new-recipe__input__portions"/>
-      </form>
-        <SearchBar searchData = {ingredientsData.map(ingredient => ({display: ingredient.name,value:ingredient.id}))}
-          placeholder = 'Search for ingredient'
-          getSearchValue={addIngredient} />
-          <ul>
-          {ingredients.map(ingredient => {
-            return (<li>
-              {ingredientsData.find(ingredientData => ingredientData.id === ingredient.id).name}
-              <input type="number" placeholder="Amount" onChange={e => changeAmount(e.target.value, ingredient.id)}></input>g
-            </li>
-          )})}
-          </ul>
-          <input type="text" placeholder="Instructions" onChange={e => addInstruction(e.target.value)}></input>
-      <button onClick={() => setClickedNewRecipeButton(false)}>
-        Cancel
-      </button>
-      <button onClick={(e) => {
-        handleSubmit(e);
-        setClickedNewRecipeButton(false);
-        }}>
-        Submit
-      </button>
+      <div className="new-recipe__content">
+        <form onSubmit={handleSubmit} className="new-recipe__form">
+          <input type="text" value={name} onChange={event => setName(event.target.value)} 
+          placeholder='Recipe name' className="new-recipe__input__name"/>
+          <input type="number" value={portions} onChange={event => setPortions(event.target.value)} 
+          placeholder='Recipe portions' className="new-recipe__input__portions"/>
+        </form>
+          <SearchBar searchData = {ingredientsData.map(ingredient => ({display: ingredient.name,value:ingredient.id}))}
+            placeholder = 'Search for ingredient'
+            getSearchValue={addIngredient} />
+            <ul>
+            {ingredients.map(ingredient => {
+              return (<li>
+                {ingredientsData.find(ingredientData => ingredientData.id === ingredient.id).name}
+                <input type="number" placeholder="Amount" onChange={e => changeAmount(e.target.value, ingredient.id)}></input>g
+              </li>
+            )})}
+            </ul>
+            <input type="text" placeholder="Instructions" onChange={e => addInstruction(e.target.value)}></input>
+        <button onClick={() => setClickedNewRecipeButton(false)}>
+          Cancel
+        </button>
+        <button onClick={(e) => {
+          handleSubmit(e);
+          setClickedNewRecipeButton(false);
+          }}>
+          Submit
+        </button>
+      </div>
     </section>
   )
 }

@@ -40,7 +40,7 @@ const RecipesPage = ({data}) => {
         </ul>
       </div>
       <div className="recipe__new">
-      <button onClick={() => setClickedNewRecipeButton(true)} className="recipe__new-button">+</button>
+      <button onClick={() => setClickedNewRecipeButton(true)} className="recipe__new-button"><p className="new-button__text">+</p></button>
       <p className="recipe__new-text">New recipe</p>
       </div>
       {clickedNewRecipeButton ? <CreateNewRecipe setClickedNewRecipeButton = {setClickedNewRecipeButton}

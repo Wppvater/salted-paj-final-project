@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import gql from 'graphql-tag';
@@ -6,9 +6,14 @@ import {Query, useMutation} from 'react-apollo';
 import { navigate } from "gatsby";
 
 const PlanPage = () => {
+
+  useEffect(() => {
+    
+  }, [])
   
-  const clickMealButton = (mealState, setMealState) => {
+  const clickMealButton = (event, mealState, setMealState) => {
     mealState ? setMealState(false) : setMealState(true);
+    event.target.classList.toggle('plan__meals-in-day_selected');
   }
   
   const [name, setName] = useState('');
@@ -42,12 +47,16 @@ const PlanPage = () => {
               PLAN YOUR SCHEDULE
             </h2> 
             <section className="plan__options">
+            <p className="plan__optin__headers">
+                Your schedule name
+                </p>
+            <input className="plan__form__name" type="test" placeholder='Enter schedule name' onChange={e => setName(e.target.value)} />
               <form className="plan__form">
-                <p className="plan__headers">
+                <p className="plan__optin__headers">
                 Days
                 </p>
-                <div class="plan__days">
-                  <input type="range" min="1" max="7" className="days__slider" />
+                <div className="plan__days">
+                  <input type="range" min="1" max="7" className="days__slider" onChange={e => setDays(e.target.value)}/>
                   <ul className="days__numbers">
                     <li>1</li>
                     <li>2</li>
@@ -58,15 +67,14 @@ const PlanPage = () => {
                     <li>7</li>
                   </ul>
                 </div>
-                <input className="plan__form__name" type="test" placeholder='Enter schedule name...' onChange={e => setName(e.target.value)} />
                 {/* <input className="schedule__form__days" type="number" placeholder='Days' onChange={e => setDays(e.target.value)} /> */}
                 {/* Portions
                 <input className="plan__form__portions" type="number" placeholder='Portions' onChange={e => setPortions(e.target.value)} /> */}
-                <p className="plan__headers">
+                <p className="plan__optin__headers">
                 Portions
                 </p>
-                <div class="plan__days">
-                  <input type="range" min="1" max="8" className="days__slider" />
+                <div className="plan__days">
+                  <input type="range" min="1" max="10" className="days__slider" onChange={e => setPortions(e.target.value)}/>
                   <ul className="days__numbers">
                     <li>1</li>
                     <li>2</li>
@@ -76,16 +84,18 @@ const PlanPage = () => {
                     <li>6</li>
                     <li>7</li>
                     <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
                   </ul>
                 </div>
               </form>
-              <p className="plan__headers">
+              <p className="plan__optin__headers">
                 Meals in one day
               </p>
               {/* <button className="plan__meals-in-day" onClick={() => clickMealButton(breakfast, setBreakfast)}>Breakfast</button> */}
               <div className="plan__buttons">
-              <button className="plan__meals-in-day" onClick={() => clickMealButton(lunch, setLunch)}>Lunch</button>
-              <button className="plan__meals-in-day" onClick={() => clickMealButton(dinner, setDinner)}>Dinner</button>
+                <button className="plan__meals-in-day" onClick={event => clickMealButton(event, lunch, setLunch)}>Lunch</button>
+                <button className="plan__meals-in-day" onClick={event => clickMealButton(event, dinner, setDinner)}>Dinner</button>
               </div>
             </section>
 
