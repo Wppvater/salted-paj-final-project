@@ -13,7 +13,7 @@ const Recipe = ({recipe}) => {
         {recipe.name}
       </h2>
       <p className="recipe__calories">
-        {recipe.energy} kcal
+        {Math.floor(recipe.energy)} kcal
       </p>
     </div>
     <p className="recipe__ingredients">

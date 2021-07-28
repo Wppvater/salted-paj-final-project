@@ -13,7 +13,7 @@ const parseCSV = () => {
   console.log(convertObject(records[0]));
   console.log(convertedObjects.length);
   console.log(convertedObjects.slice(0,100).length)
-  ingredientsDb.addMultiple(convertedObjects.slice(0,100));
+  ingredientsDb.addMultiple(convertedObjects.slice(100));
   console.log(convertedObjects[0]);
 }
 const outsideProperties = [

@@ -75,7 +75,7 @@ main {
   font-size: 1.2rem;
   display: flex;
   justify-content: space-around;
-  background-color: $quartery-color;
+  background-color: white;
 }
 
 .nav {
@@ -154,15 +154,17 @@ main {
 }
 
 .searchbar {
+  margin-top: -2px;
   padding: 1rem 0 0;
   margin-bottom: 2rem;
-  position: relative;
+  position: absolute;
   display: inline-block;
   display: flex;
   justify-content: center;
   max-height: 80%;
   // height: 7rem;
   width: 100%;
+  box-shadow: 0px 9px 20px rgb(227, 227, 227, 0.5);
   // background-color: $quartery-color;
   
   // .searchbar__dropdown {
@@ -286,7 +288,15 @@ main {
 }
 
 .main__recipes {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 222px);
+}
+
+.recipe__body {
+  margin-top: 100px;
+}
+
+.recipe__container {
+  height: 60px;
 }
 
 .recipes__searchbar {
@@ -332,11 +342,13 @@ main {
 }
 
 .recipe__new {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: right;
   align-items: center;
-
+  margin: 1rem 0;
+  
   .recipe__new-button {
     @include button;
     width: 50px;

@@ -33,6 +33,7 @@ type Recipe{
   fat: Float!
   protein: Float!
   microNutrients: [microNutrient]!
+  categories: [String]
 }
 
 type Schedule{
@@ -77,6 +78,7 @@ input RecipeAddRequest{
   name: String!
   instructions: [String]!
   portions: Float!
+  categories: [String]!
   ingredients: [RecipeIngredientInput]!
 }
 

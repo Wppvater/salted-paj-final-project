@@ -6,6 +6,7 @@ const buildMakeRecipe = ({validator}) => {
     portions,
     ingredients,
     ingredientObjects,
+    categories = [],
   } = {}) => {
     validator.validateType({type:'string', data: id, errorMessage:'Recipe must have id.'})
     validator.validateType({type:'string', data: name, errorMessage:'Recipe must have name and be a string.'})
@@ -55,9 +56,10 @@ const buildMakeRecipe = ({validator}) => {
       getProtein: () => ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),
       getFat: () => ingredientObjects.reduce((totalFat, ingredient, index) => totalFat + ingredient.getFat()*ingredients[index].grams/100, 0),
       getMicroNutrients: () => microNutrientCalculator(),
+      getCategories: () => [...categories],
       getIngredients: () => ingredients.map(ingredient => ({...ingredient})),
       getDbStore: () => ({
-        id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions
+        id, name, instructions, ingredients: ingredients.map(ingredient => ({...ingredient})), portions, categories: [...categories]
       }),
       getAll: () => ({
         id, name, instructions, ingredients: ingredients.map((ingredient,index) => ({...ingredient, name:ingredientObjects[index].getName()})), portions,
@@ -66,6 +68,7 @@ const buildMakeRecipe = ({validator}) => {
         protein: ingredientObjects.reduce((totalProtein, ingredient, index) => totalProtein + ingredient.getProtein()*ingredients[index].grams/100, 0),
         fat: ingredientObjects.reduce((totalFat, ingredient, index) => totalFat + ingredient.getFat()*ingredients[index].grams/100, 0),
         microNutrients: microNutrientCalculator(),
+        categories: [...categories]
       })
     });
   };

@@ -16,9 +16,9 @@ const Nav = () => (
     <Link to="/recipes">
       <img src={recipeIcon} alt="recipe-icon" className="nav__icon nav__recipes nav__icon__inactive" />
     </Link>
-    <Link to="/profile">
+    {/* <Link to="/profile">
       <img src={profileIcon} alt="profile-icon" className="nav__icon nav__profile nav__icon__inactive" />
-    </Link>
+    </Link> */}
   </nav>
   );
 

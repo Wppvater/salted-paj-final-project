@@ -5,6 +5,7 @@ const postRecipe = async ({recipeInfo}) => {
     instructions: recipeInfo.instructions,
     portions: recipeInfo.portions,
     ingredients: recipeInfo.ingredients,
+    categories: recipeInfo.categories
   }
   const newRecipe = await recipesService.createRecipe(recipe);
   const recipeToReturn = { ...newRecipe.getAll() }
