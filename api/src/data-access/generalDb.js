@@ -1,4 +1,5 @@
 require('dotenv').config()
+const {readAllCache, writeAllCache, readIdCache, writeIdCache} = require('./simpleCache');
 const faunadb = require("faunadb");
 q = faunadb.query;
 const client = new faunadb.Client({
@@ -12,6 +13,7 @@ const makeDbService = ({ collection }) => {
   }
   const addToDatabase = async item => {
     console.log(`Adding multiple data in ${collection} to database`);
+    writeAllCache(collection, null);
     return await client.query( 
       q.Create(
         q.Collection(collection),
@@ -24,6 +26,7 @@ const makeDbService = ({ collection }) => {
 
   const addMultipleToDatabase = async mappedItems => {
     console.log(`Adding multiple data in ${collection} to database`);
+    writeAllCache(collection, null);
     return await client.query(
       q.Map(
         mappedItems, 
@@ -43,7 +46,13 @@ const makeDbService = ({ collection }) => {
   const getByIdsFromDatabase = async ids => {
     console.log(`Fetching ${collection} by id from database`);
     console.log(ids);
-    return await client.query(
+    const cachedValues = ids.map(id => readIdCache(collection, id));
+    if(!cachedValues.some(value => value === null)){
+      console.log('All values were cached!');
+      return cachedValues;
+    }
+    // const remainingIds = ids.filter(id => !cachedValues.some(value => value.id === id));
+    const results = await client.query(
       q.Map(
         ids,
         q.Lambda(
@@ -57,18 +66,27 @@ const makeDbService = ({ collection }) => {
     )
   .then((ret) => ret.map(converter))
   .catch((err) => console.error('Error: %s', err))
+  results.forEach(result => writeIdCache(collection,result.id,result));
+  return results;
 }
 
   const getAllFromDatabase = async () => {
   console.log(`Fetching all ${collection} from database`);
-  return await client.query(
+  const cached = readAllCache(collection);
+  if(cached){
+    console.log('Query was already cached!');
+    return cached;
+  }
+  const results = await client.query(
     q.Map(
       q.Paginate(q.Documents(q.Collection(`${collection}`)),{size:5000}),
       q.Lambda(x => q.Get(x))
     )
   )
-  .then((ret) => ret.data.map(converter))
-  .catch((err) => console.error('Error: %s', err))
+    .then((ret) => ret.data.map(converter))
+    .catch((err) => console.error('Error: %s', err))
+  writeAllCache(collection, results);
+  return results;
   }
 
   return Object.freeze({
