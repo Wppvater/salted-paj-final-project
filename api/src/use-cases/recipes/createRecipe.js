@@ -1,6 +1,6 @@
 const { makeRecipe } = require('../../entities');
 
-const makeCreateRecipe = ({ recipesDb, validator, Id, getIngredients, recipeConstructor }) => {
+const makeCreateRecipe = ({ recipesDb, Id, recipeConstructor }) => {
   if(recipesDb === undefined){
     throw new Error('getRecipes requires a database to function');
   }
