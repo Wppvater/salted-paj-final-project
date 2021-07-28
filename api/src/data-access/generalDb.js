@@ -13,8 +13,7 @@ const makeDbService = ({ collection }) => {
   }
   const addToDatabase = async item => {
     console.log(`Adding multiple data in ${collection} to database`);
-    writeAllCache(collection, null);
-    return await client.query( 
+    const results = await client.query( 
       q.Create(
         q.Collection(collection),
         { data: item },
@@ -22,12 +21,13 @@ const makeDbService = ({ collection }) => {
     )
     .then((ret) => converter(ret))
     .catch((err) => console.error('Error: %s', err));
+    writeAllCache(collection, null);
+    return results;
   } 
 
   const addMultipleToDatabase = async mappedItems => {
     console.log(`Adding multiple data in ${collection} to database`);
-    writeAllCache(collection, null);
-    return await client.query(
+    const results = client.query(
       q.Map(
         mappedItems, 
       q.Lambda(
@@ -41,6 +41,8 @@ const makeDbService = ({ collection }) => {
     )
     .then((ret) => ret.data.map(converter))
     .catch((err) => console.error('Error: %s', err));
+    writeAllCache(collection, null);
+    return results;
   }  
 
   const getByIdsFromDatabase = async ids => {
@@ -51,6 +53,7 @@ const makeDbService = ({ collection }) => {
       console.log('All values were cached!');
       return cachedValues;
     }
+    console.log('Some values were not cached')
     // const remainingIds = ids.filter(id => !cachedValues.some(value => value.id === id));
     const results = await client.query(
       q.Map(
@@ -77,6 +80,7 @@ const makeDbService = ({ collection }) => {
     console.log('Query was already cached!');
     return cached;
   }
+  console.log('Query was not cached')
   const results = await client.query(
     q.Map(
       q.Paginate(q.Documents(q.Collection(`${collection}`)),{size:5000}),

@@ -4,6 +4,7 @@ type Query{
   getAllSchedules:[Schedule]
   getSchedules(id:[String!]):[Schedule]
   getRandomRecipes(numOfRecipes: Int!): [Recipe]
+  getRecipe(id:String!):Recipe
 }
 type Ingredient{
   name: String!

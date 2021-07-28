@@ -42,7 +42,8 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
 
   return (
     <section className="recipe__new-recipe">
-      <div className="new-recipe__content">
+        <div className="new-recipe__content">
+        <h2>Create new recipe</h2>
         <form onSubmit={handleSubmit} className="new-recipe__form">
           <input type="text" value={name} onChange={event => setName(event.target.value)} 
           placeholder='Recipe name' className="new-recipe__input__name"/>
@@ -52,7 +53,7 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
           <SearchBar searchData = {ingredientsData.map(ingredient => ({display: ingredient.name,value:ingredient.id}))}
             placeholder = 'Search for ingredient'
             getSearchValue={addIngredient} />
-            <ul>
+            <ul className="new-recipe__ingredient-result">
             {ingredients.map(ingredient => {
               return (<li>
                 {ingredientsData.find(ingredientData => ingredientData.id === ingredient.id).name}
@@ -60,11 +61,13 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
               </li>
             )})}
             </ul>
-            <input type="text" placeholder="Instructions" onChange={e => addInstruction(e.target.value)}></input>
-        <button onClick={() => setClickedNewRecipeButton(false)}>
+            <input className="new-recipe__instructions" type="text" placeholder="Instructions" onChange={e => addInstruction(e.target.value)}></input>
+      </div>
+      <div className="new-recipes__buttons">
+        <button className="new-recipe__button new-recipe__cancel-button" onClick={() => setClickedNewRecipeButton(false)}>
           Cancel
         </button>
-        <button onClick={(e) => {
+        <button className="new-recipe__button new-recipe__submit-button" onClick={(e) => {
           handleSubmit(e);
           setClickedNewRecipeButton(false);
           }}>

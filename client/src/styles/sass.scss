@@ -3,7 +3,9 @@
 
 $primary-color: #1D153A;
 $secondary-color: #878395;
+$tertiary-color-light: #FAE8DD;
 $tertiary-color: #FCB374;
+$tertiary-color-dark: #FD7E2D;
 $quartery-color: #FDFDFC;
 $fifth-color: rgba(255, 255, 255, 0.3);
 $sixth-color: #F0F0F0;
@@ -142,6 +144,12 @@ main {
     border-radius: 1rem;
     color: grey;
   }
+  input:focus {
+    border: 1px solid $tertiary-color;
+    border-radius: 10rem;
+    outline: none;
+    background-color: $quartery-color;
+  }
 }
 
 .logo {
@@ -156,9 +164,10 @@ main {
 }
 
 .daily-schedule__date {
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-light;
+  color: $tertiary-color-dark;
   border-radius: 0.5rem;
-  padding: 0.1rem 0 0.2rem;
+  padding: 0.2rem 0.1rem 0.3rem;
   width: 4rem;
   margin: 0.5rem 1.2rem;
   font-size: 0.8rem;
@@ -199,39 +208,51 @@ main {
 }
 
 .searchbar {
-  margin-top: -2px;
-  padding: 1rem 0 0;
-  margin-bottom: 2rem;
   position: absolute;
   display: inline-block;
   display: flex;
   justify-content: center;
-  max-height: 80%;
-  // height: 7rem;
+  height: 5rem;
   width: 100%;
-  box-shadow: 0px 9px 20px rgb(227, 227, 227, 0.5);
-  // background-color: $quartery-color;
-  
-  // .searchbar__dropdown {
-  //   display: none;
-  //   background-color: $quartery-color;
-  //   border-radius: 1rem;
-  //   height: 5rem;
-  //   overflow-y: scroll;
-  //   // z-index: 1;
-  // }
-  
+  .searchbar:focus {
+    border: 1px solid $tertiary-color;
+    border-radius: 10rem;
+    outline: none;
+    background-color: $quartery-color;
+  }
+
   .searchbar__input {
     @include input;
+    width: 85%;
+    background-color: #F0F0F0;
   }
-  
 }
 
-.searchbar:hover .searchbar__dropdown {
-  display: block;
-  width: 12rem;
-  background-color: black;
-  // z-index: 5;
+.searchbar__form {
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
+  margin-right: 2rem;
+  display: inline-block;
+}
+
+.searchbar__dropdown {
+  font-size: 0.9rem;
+  padding: 1.2rem;
+  width: 90%;
+  height: 90%;
+  overflow-y: scroll;
+   p {
+     text-align: left;
+     margin-left: 1rem;
+     margin-bottom: 0.5rem;
+   }
+}
+
+.searchbar__input:hover {
+  border: 1px solid $tertiary-color;
+  outline: none;
+  background-color: #FDFDFC;
 }
 
 .main__plan {
@@ -284,7 +305,7 @@ main {
 .slider::-moz-range-thumb {
   width: 12px; /* Set a specific slider handle width */
   height: 12px; /* Slider handle height */
-  background: $primary-color; /* Green background */
+  background: seagreen; /* Green background */
   border-radius: 15px;
   cursor: pointer; /* Cursor on hover */
 }
@@ -303,6 +324,15 @@ main {
   height: 3rem;
   background-color: white;
   // margin: auto;
+}
+
+.plan__form__name:focus {
+  @include input;
+  height: 3rem;
+  border: 1px solid $tertiary-color;
+  border-radius: 10rem;
+  outline: none;
+  background-color: $quartery-color;
 }
 
 .plan__buttons {
@@ -396,10 +426,6 @@ main {
   float: right;
   right: 75vw;
   top: 83%;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: right;
-  // align-items: center;
   
   .recipe__new-button {
     @include button;
@@ -429,26 +455,30 @@ main {
   position: fixed; 
   z-index: 1; 
   left: 0;
-  top: 0;
   width: 100%;
-  height: 100%;
+  height: 91%;
   // overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(212,212,212,0.65);
+  top: 60px;
 }
 
 .new-recipe__content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
+  padding-top: 1.5rem;
+  background-color: white;
+  margin: 10% auto 0;
   border-radius: 0.5rem;
   border: 1px solid #888;
-  width: 80%; 
-  height: 80%;
+  width: 90%; 
+  height: 60%;
+  border: none;
 }
 
 .new-recipe__input__name, .new-recipe__input__portions, .searchbar__input {
   @include input;
+  background-color: white;
+  border-bottom: 1px solid #EEEEEE;
+  border-radius: 0;
+  color: #878395;
 }
 
 .recipe-info__background {
@@ -512,5 +542,29 @@ main {
   font-size: 0.8rem;
   span {
     margin: 0.2rem 0;
+  }
+}
+
+.new-recipe__ingredient-result {
+  height: 50%;
+}
+
+.new-recipe__instructions {
+  @include input;
+}
+
+.new-recipes__buttons {
+
+  .new-recipe__button {
+    @include button;
+    background-color: $tertiary-color;
+    color: white;
+    padding: 0.6rem 1.3rem;
+    margin: 1rem 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .new-recipe__cancel-button {
+    background-color: $secondary-color;
   }
 }

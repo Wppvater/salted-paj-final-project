@@ -44,7 +44,11 @@ const PlanPage = () => {
   const [breakfast, setBreakfast] = useState(false);
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
-  const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
+  const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE, {
+    refetchQueries: [
+      'getAllSchedulesIndex',
+    ]
+  });
   
   const submitSchedule = () => {
     selectedCategories();
@@ -58,7 +62,7 @@ const PlanPage = () => {
       lunch,
       dinner,
       }});
-      navigate("/", { replace: true })
+    navigate("/", { replace: true })
   }
 
   return (
@@ -75,7 +79,7 @@ const PlanPage = () => {
             <p className="plan__option__headers">
                 Your schedule name
                 </p>
-            <input className="plan__form__name" type="test" placeholder='Enter schedule name' onChange={e => setName(e.target.value)} />
+            <input className="plan__form__name" type="test" placeholder='' onChange={e => setName(e.target.value)} />
               <form className="plan__form">
                 <p className="plan__option__headers">
                 Days

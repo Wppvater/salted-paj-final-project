@@ -11,29 +11,29 @@ const MoreRecipeInfo = ({recipe, setMoreInfoClicked}) => {
         <div className="recipe-info__line"></div>
         <ul>
           {/* name */}
-          {recipe.ingredients.map(ingredient => {
+          {recipe.ingredients.map((ingredient, index) => {
             return (
-              <li className="recipe-info__ingredients">
-              <span>{ingredient.name}</span>
-              <span> {ingredient.amount} g</span>
+              <li key={index} className="recipe-info__ingredients">
+                <span>{ingredient.name}</span>
+                <span> {ingredient.amount} g</span>
               </li>
           )
         })}
         </ul>
         <p className="recipe-info__title">Instructions</p>
         <div className="recipe-info__line"></div>
-        <p>{recipe.instructions.map((instruction,index) => {
+        <div>{recipe.instructions.map((instruction,index) => {
             return (
-              <div>
-              <li className="recipe-info__ingredients">
-                <span>Step {index + 1}</span>
-              </li>
-              <li className="recipe-info__ingredients">
-                <span>{instruction}</span>
-              </li>
+              <div key={index}>
+                <li className="recipe-info__ingredients">
+                  <span>Step {index + 1}</span>
+                </li>
+                <li className="recipe-info__ingredients">
+                  <span>{instruction}</span>
+                </li>
               </div>
           )
-        })}</p>
+        })}</div>
         {/* <ul>{recipe.ingredientObjects.map(ingredient => {
           return (
           <li>

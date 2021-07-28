@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, {useState} from "react"
 import { graphql, Link } from 'gatsby'
 import gql from 'graphql-tag';
 import {Query} from 'react-apollo';
@@ -6,11 +6,10 @@ import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import Schedule from "../components/Schedule";
 import '../styles/sass.scss';
-import logo from '../images/logo.png';
+import logo from '../images/logo.jpg';
 
 const IndexPage = ({data}) => {
   // const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
-
   // const scheduleData = data.saltedpaj.getAllSchedules[0];
   return (
     <div className="blur">
@@ -19,11 +18,10 @@ const IndexPage = ({data}) => {
       <Logo />
       <div className="main__div">
         <title>Home Page</title>
-        <Query query={GetAllSchedulesQuery}>
+        <Query query={GetAllSchedulesQuery} fetchPolicy={'cache-and-network'}>
           {({data, loading, error})=>{
             if (loading) return <span>Loading...</span>
             if (error) return <span>{error.message}</span>
-            console.log(data.getAllSchedules);
             if(data.getAllSchedules.length == 0){
               return (
               <div>
@@ -49,7 +47,7 @@ const IndexPage = ({data}) => {
 export default IndexPage
 
 const GetAllSchedulesQuery = gql`
-  {
+  query getAllSchedulesIndex{
     getAllSchedules {
         name
         id
