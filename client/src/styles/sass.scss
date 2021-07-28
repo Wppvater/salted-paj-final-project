@@ -80,7 +80,7 @@ main {
 
 .nav {
   @include nav;
-  box-shadow: 0px 0px 20px rgb(227, 227, 227);
+  box-shadow: 0px 0px 20px rgb(17, 0, 49);
 }
 
 .nav__icon__inactive {
@@ -98,15 +98,11 @@ main {
 .logo {
   @include nav;
   top: 0;
-  padding: 0;
   box-shadow: 0px 0px 20px rgb(227, 227, 227);
 
-    p {
-      font-family: 'Limelight', cursive;
-      font-size: 1.5rem;
-      display: inline-block;
-      margin-top: 1rem;
-      text-transform: uppercase;
+    img {
+      width: 120px;
+      height: 40px;
     }
 }
 
@@ -185,6 +181,7 @@ main {
 .searchbar:hover .searchbar__dropdown {
   display: block;
   width: 12rem;
+  background-color: black;
   // z-index: 5;
 }
 
@@ -209,7 +206,7 @@ main {
   box-shadow: 0px 0px 20px rgb(227, 227, 227);
 }
 
-.plan__optin__headers {
+.plan__option__headers {
   font-size: 0.8rem;
   text-align: left;
   color: $secondary-color;
@@ -254,6 +251,7 @@ main {
 
 .plan__form__name {
   @include input;
+  background-color: white;
   // margin: auto;
 }
 
@@ -263,7 +261,7 @@ main {
   margin-left: 0.5rem;
 }
 
-.plan__meals-in-day {
+.plan__meals-in-day, .plan__categories {
   @include button;
   background-color: white;
   color: $primary-color;
@@ -283,12 +281,13 @@ main {
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
   border-radius: 1rem;
-  background-color: $tertiary-color;
+  background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
+  box-shadow: 0px 10px 30px #fcb37467;
   color: white;
 }
 
 .main__recipes {
-  height: calc(100vh - 222px);
+  height: calc(100vh - 120px);
 }
 
 .recipe__body {
@@ -296,13 +295,14 @@ main {
 }
 
 .recipe__container {
-  height: 60px;
+  height: 30px;
 }
 
 .recipes__searchbar {
   background-color: white;
   padding: 1.5rem 0;
 }
+
 
 .recipe__card {
   background-color: $quartery-color;
@@ -342,12 +342,14 @@ main {
 }
 
 .recipe__new {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  align-items: center;
-  margin: 1rem 0;
+  position: fixed;
+  float: right;
+  right: 75vw;
+  top: 83%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: right;
+  // align-items: center;
   
   .recipe__new-button {
     @include button;
@@ -355,6 +357,7 @@ main {
     height: 50px;
     border-radius: 50px;
     background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
+    box-shadow: 0px 10px 30px #fbbf8a94;
     color: $fifth-color;
 
       p {
@@ -366,7 +369,7 @@ main {
   }
   
   .recipe__new-text {
-    color: $tertiary-color;
+    color: #E77214;
     font-size: 1rem;
 
   }
