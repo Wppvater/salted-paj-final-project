@@ -3,3 +3,4 @@ client/.cache/
 client/public
 dataConverter/livsmedelsDB.csv
 */.env
+*/.env.development

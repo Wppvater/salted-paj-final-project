@@ -1,11 +1,12 @@
 import * as React from "react"
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import gql from 'graphql-tag';
 import {Query} from 'react-apollo';
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import Schedule from "../components/Schedule";
 import '../styles/sass.scss';
+import logo from '../images/logo.png';
 
 const IndexPage = ({data}) => {
   // const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
@@ -23,6 +24,16 @@ const IndexPage = ({data}) => {
             if (loading) return <span>Loading...</span>
             if (error) return <span>{error.message}</span>
             console.log(data.getAllSchedules);
+            if(data.getAllSchedules.length == 0){
+              return (
+              <div>
+              <img src={logo} alt={logo} className="App__logo" />
+              <Link to='/plan'>
+              <button className="schedule__create-button">Create your new schedule!</button>
+              </Link>
+              </div>
+              )
+            }
             return  <Schedule scheduleData = {data.getAllSchedules[data.getAllSchedules.length-1]}/>
           }}
         </Query>

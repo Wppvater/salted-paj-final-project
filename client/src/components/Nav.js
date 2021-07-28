@@ -1,32 +1,50 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import { Link, navigate } from 'gatsby';
 import homeIcon from '../images/home.png';
 import planIcon from '../images/plan.png';
 import recipeIcon from '../images/recipe.png';
 import profileIcon from '../images/profile.png';
+import { useLocation } from '@reach/router';
 
 const Nav = () => {
-
   const [navSchedule, setNavSchedule] = useState(false);
   const [navPlan, setNavPlan] = useState(false);
   const [navRecipes, setNavRecipes] = useState(false);
+  const [clickedNavButton, setClickedNavButton] = useState(null);
 
-  const clickSelectNav = (event, buttonState, setButtonState) => {
-    buttonState ? setButtonState(false) : setButtonState(true);
-    event.target.classList.toggle('nav__selected');
+  const location = useLocation();
+
+  const clickSelectNav = (event, id, route) => {
+    //setClickedNavButton(id);
+    // clickedNavButton === id ? 
+    // buttonState ? setButtonState(false) : setButtonState(true);
+    navigate(route, { replace: true })
   }
+  useEffect(() => {
+    switch(location.pathname){
+      case '/recipes':
+        setNavRecipes(true);
+        break;
+      case '/plan':
+        setNavPlan(true);
+        break;
+      case '/':
+        setNavSchedule(true);
+        break;
+      default:
+        console.log('New paths added, unable to highlight correct path');
+    }
+  })
 
 return (
   <nav className="nav">
-    <Link to="/">
-      <img src={homeIcon} alt="home-icon" className="nav__icon nav__home" />
-    </Link>
-    <Link to="/plan">
-      <img src={planIcon} alt="plan-icon" className="nav__icon nav__plan nav__icon__inactive" />
-    </Link>
-    <Link to="/recipes">
-      <img src={recipeIcon} alt="recipe-icon" className="nav__icon nav__recipes nav__icon__inactive" />
-    </Link>
+      <img src={homeIcon} alt="home-icon" id="1" className="nav__home" className={navSchedule ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 1, '/')}/>
+    {/* <Link to="/plan"> */}
+      <img src={planIcon} alt="plan-icon" id="2" className="nav__plan " className={navPlan ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 2, '/plan')} />
+    {/* </Link> */}
+    {/* <Link to="/recipes"> */}
+      <img src={recipeIcon} alt="recipe-icon" id="3" className="nav__recipes" className={navRecipes ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 3, '/recipes')} />
+    {/* </Link> */}
     {/* <Link to="/profile">
       <img src={profileIcon} alt="profile-icon" className="nav__icon nav__profile nav__icon__inactive" />
     </Link> */}

@@ -9,32 +9,51 @@ const PlanPage = () => {
 
   // useEffect(() => {
     
-  // }, [])
+  //   setCategories(categories);
+  // }, [clickSelectButton])
   
   const clickSelectButton = (event, buttonState, setButtonState) => {
     buttonState ? setButtonState(false) : setButtonState(true);
     event.target.classList.toggle('plan__meals-in-day_selected');
   }
+
+  const selectedCategories = () => {
+    if (vegetarian) {
+      categories.push('vegetarian')
+    } 
+    if (vegan) {
+      categories.push('vegan')
+    }
+    if (breakfast) {
+      categories.push('breakfast')
+    }
+    setCategories(categories);
+  }
   
   const [name, setName] = useState('');
   const [days, setDays] = useState(1);
-  const [vegetarian, setVegetarian] = useState(false);
-  const [vegan, setVegan] = useState(false);
-  const [breakfastCategory, setBreakfastCategory] = useState(false);
+  const [categories, setCategories] = useState([]);
   const [portions, setPortions] = useState(1);
   // Set start date to be the next day
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState();
+
+  const [breakfastCategory, setBreakfastCategory] = useState(false);
+  const [vegetarian, setVegetarian] = useState(false);
+  const [vegan, setVegan] = useState(false);
+
   const [breakfast, setBreakfast] = useState(false);
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
   const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
   
   const submitSchedule = () => {
+    selectedCategories();
     generateSchedule({variables: {
       name,
       days: Number(days),
       portions: Number(portions),
       startDate,
+      categories,
       breakfast,
       lunch,
       dinner,
@@ -98,7 +117,9 @@ const PlanPage = () => {
               <p className="plan__option__headers">
                 Start date
               </p>
+              <div className="plan__option__date">
                 <input type="date" onChange={e => setStartDate(e.target.value)} />
+              </div>
               <p className="plan__option__headers">
                 Meals in one day
               </p>
@@ -161,7 +182,7 @@ export default PlanPage;
 // `;
 
 const GENERATE_SCHEDULE = gql`
-  mutation($name: String!, $categories: [String], $days: Int!, $portions: Float!, $startDate: String $breakfast: Boolean, $lunch: Boolean, $dinner: Boolean) {
+  mutation($name: String!, $categories: [String], $days: Int!, $portions: Float!, $startDate: String!, $breakfast: Boolean, $lunch: Boolean, $dinner: Boolean) {
     postScheduleRandomRecipes(scheduleInfo: {
         name: $name
         categories: $categories

@@ -50,6 +50,30 @@ main {
   height: calc(100vh - 120px);
 }
 
+
+.App__logo {
+  overflow:scroll;
+  /* position: absolute; */
+  margin-top: 20px;
+  height: 20vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App__logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @mixin button {
   padding: 0.4rem;
   border: none;
@@ -78,12 +102,21 @@ main {
   background-color: white;
 }
 
-.nav {
-  @include nav;
-  box-shadow: 0px 0px 20px rgb(17, 0, 49);
+.schedule__create-button {
+  @include button;
+  margin: 30rem 2rem;
+  padding: 1rem;
+  background-color: $primary-color;
+  color: $sixth-color;
 }
 
-.nav__icon__inactive {
+.nav {
+  @include nav;
+  box-shadow: 0px 0px 20px rgb(182, 182, 182);
+}
+
+
+.nav__unselected {
   filter: grayscale(100%);
 }
 
@@ -93,6 +126,22 @@ main {
 }
 .nav__home, .nav__recipes {
   width: 40px;
+}
+
+.plan__option__date {
+  width: 93%;
+  padding-left: 1.5rem;
+  margin-top: 0.7rem;
+  input {
+    padding: 1rem;
+    height: 2rem;
+    text-align: left;
+    width: 100%;
+    border-color: white;
+    border: 0px none transparent;
+    border-radius: 1rem;
+    color: grey;
+  }
 }
 
 .logo {
@@ -251,6 +300,7 @@ main {
 
 .plan__form__name {
   @include input;
+  height: 3rem;
   background-color: white;
   // margin: auto;
 }
@@ -280,7 +330,7 @@ main {
   margin: 2rem;
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
-  border-radius: 1rem;
+  border-radius: 10rem;
   background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
   box-shadow: 0px 10px 30px #fcb37467;
   color: white;
@@ -363,7 +413,7 @@ main {
       p {
         font-size: 30px;
         color: white;
-        margin: 0 0 2px 2px;
+        margin: 0 0 1px 1px;
         font-weight: 50px;
       }
   }
@@ -385,7 +435,6 @@ main {
   // overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
-
 }
 
 .new-recipe__content {
@@ -396,10 +445,72 @@ main {
   border: 1px solid #888;
   width: 80%; 
   height: 80%;
-
-  
 }
 
 .new-recipe__input__name, .new-recipe__input__portions, .searchbar__input {
   @include input;
+}
+
+.recipe-info__background {
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 60px;
+  width: 100%;
+  height: 100%;
+  // overflow: auto;
+  background-color: rgb(212,212,212,0.65);
+}
+
+.recipe-info__content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 0.5rem;
+  width: 90%; 
+    h2 {
+      margin-bottom: 1rem;
+      font-style: bold;
+    }
+    h3 {
+      font-size: 0.8rem;
+      font-style: normal;
+      text-align: left;
+      margin-bottom: 0.3rem;
+    }
+}
+
+.recipe-info__title {
+  font-size: 0.8rem;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin-top: 1rem;
+}
+
+.recipe-info__line {
+  margin-top: 3px;
+  border-top: 1px solid #EEEEEE;
+  width: 100%;
+}
+
+.recipe-info_close {
+  @include button;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
+  box-shadow: 0px 10px 30px #fbbf8a94;
+  color: white;
+  font-size: 1.7rem;
+}
+
+.recipe-info__ingredients {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  span {
+    margin: 0.2rem 0;
+  }
 }
