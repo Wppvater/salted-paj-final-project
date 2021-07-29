@@ -13,12 +13,12 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
   }
   const handleSubmit = event => {
     event.preventDefault();
-    getSearchValue(sortedSearchData.find(entry => entry.display.toLowerCase().match(searchValue.toLowerCase())).value);
+    getSearchValue(sortedSearchData.find(entry => (entry.display.toLowerCase() === event.target.textContent.toLowerCase())).value);
   }
   const clickDropdown = event => {
     console.log(event.target.tagName)
     if(event.target.tagName === 'P'){
-      getSearchValue(sortedSearchData.find(entry => entry.display.toLowerCase().match(event.target.textContent.toLowerCase())).value);
+      getSearchValue(sortedSearchData.find(entry => (entry.display.toLowerCase() === event.target.textContent.toLowerCase())).value);
       setSearchValue('');
     }
   }
@@ -32,7 +32,7 @@ const SearchBar = ({searchData = [], placeholder = '', getSearchValue}) => {
         <input type="text" value={searchValue} onChange={handleChange} 
         placeholder={placeholder} className="searchbar__input" />
         <div className="searchbar__dropdown" onClick={clickDropdown}>
-          {dropdownData ? dropdownData.map(data => <p>{data.display}</p>):''}
+          {dropdownData ? dropdownData.map(data => <p key={data.value}>{data.display}</p>):''}
         </div>
       </form>
     </div>

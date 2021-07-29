@@ -22,7 +22,7 @@ const MoreRecipeInfo = ({recipe, setMoreInfoClicked}) => {
         </ul>
         <p className="recipe-info__title">Instructions</p>
         <div className="recipe-info__line"></div>
-        <div>{recipe.instructions.map((instruction,index) => {
+        <div className="recipe-info__ingredients-list">{recipe.instructions.map((instruction,index) => {
             return (
               <div key={index}>
                 <li className="recipe-info__ingredients">

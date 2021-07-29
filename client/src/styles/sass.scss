@@ -59,7 +59,7 @@ main {
 
 .main__div {
   overflow: scroll;
-  padding: 15% 0 0;
+  padding: 15% 0 15%;
   height: 100%;
   // height: calc(100% - 120px);
 }
@@ -68,9 +68,18 @@ main {
 .App__logo {
   overflow:scroll;
   /* position: absolute; */
-  margin-top: 20px;
   height: 20vmin;
+  // width: 20vmin;
   pointer-events: none;
+  margin: auto;
+}
+
+.schedule__logo__button {
+  margin-top: 13rem;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // height: 0rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -118,10 +127,13 @@ main {
 
 .schedule__create-button {
   @include button;
-  margin: 30rem 2rem;
+  margin: 5rem 2rem;
   padding: 1rem;
-  background-color: $primary-color;
-  color: $sixth-color;
+  font-size: 1rem;
+  border-radius: 10rem;
+  background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
+  box-shadow: 0px 10px 30px #fcb37467;
+  color: white;
 }
 
 .nav {
@@ -453,7 +465,7 @@ main {
   position: fixed;
   float: right;
   right: 75vw;
-  top: 83%;
+  bottom: 4rem;
   
   .recipe__new-button {
     @include button;
@@ -591,10 +603,12 @@ main {
 
 .recipe-info__content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 15% auto 6%;
   padding: 20px;
   border-radius: 0.5rem;
   width: 90%; 
+  max-height: 70%;
+  overflow: scroll;
     h2 {
       margin-bottom: 1rem;
       font-style: bold;
@@ -630,6 +644,11 @@ main {
   box-shadow: 0px 10px 30px #fbbf8a94;
   color: white;
   font-size: 1.7rem;
+}
+
+.recipe-info__ingredients-list {
+  max-height: 8rem;
+  overflow: scroll;
 }
 
 .recipe-info__ingredients {

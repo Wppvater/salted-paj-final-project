@@ -12,15 +12,16 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log({name: name,
-    //   instructions:recipeInstruction,
-    //   portions: portions,
-    //   ingredients: ingredients,})
+    console.log({name: name,
+      instructions:recipeInstruction,
+      portions: portions,
+      ingredients: ingredients,})
     addRecipe({variables:{
       name: name,
       instructions:recipeInstruction,
       portions: Number(portions),
       ingredients: ingredients,
+      categories: ['Categories functionality not implemented']
     }});
   }
   const addIngredient = ingr => {
@@ -92,12 +93,13 @@ export default CreateNewRecipe;
 
 const ADD_RECIPE = gql`
   mutation($name: String!,$instructions:[String]!, $portions: Float!
-  $ingredients: [RecipeIngredientInput]!) {
+  $ingredients: [RecipeIngredientInput]!, $categories: [String]!) {
     postRecipe (recipeInfo:{
     name: $name
     instructions: $instructions
     portions: $portions
     ingredients: $ingredients
+    categories: $categories
   }) 
   {
     error

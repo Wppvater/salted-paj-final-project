@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import Schedule from "../components/Schedule";
 import '../styles/sass.scss';
-import logo from '../images/logo2.png';
+import logo from '../images/favicon.ico';
 
 const IndexPage = ({data}) => {
   // const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);
@@ -24,11 +24,11 @@ const IndexPage = ({data}) => {
             if (error) return <span>{error.message}</span>
             if(data.getAllSchedules.length == 0){
               return (
-              <div>
-              <img src={logo} alt={logo} className="App__logo" />
-              <Link to='/plan'>
-              <button className="schedule__create-button">Create your new schedule!</button>
-              </Link>
+              <div className="schedule__logo__button">
+                <img src={logo} alt={logo} className="App__logo" />
+                <Link to='/plan'>
+                <button className="schedule__create-button">Create your new schedule!</button>
+                </Link>
               </div>
               )
             }

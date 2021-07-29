@@ -15,11 +15,9 @@ const RecipesPage = ({data}) => {
   const [searchValue, setSearchValue] = useState('');
   const { loading, error, data:recipesData } = useQuery(GetAllRecipesQuery);
   const [displayRecipes, setDisplayRecipes] = useState(null);
-  let recipes = null;
   const filterDropdownData = () => {
-    console.log(recipes)
-    if(recipes){
-      const newData = recipes.filter(entry => entry.name.toLowerCase().includes(searchValue.toLowerCase()));
+    if(recipesData){
+      const newData = recipesData.getAllRecipes.filter(entry => entry.name.toLowerCase().includes(searchValue.toLowerCase()));
       setDisplayRecipes(newData);
     }
   }
@@ -28,8 +26,7 @@ const RecipesPage = ({data}) => {
   }
   useEffect(() => {
     if(recipesData){
-    recipes = recipesData.getAllRecipes;
-    setDisplayRecipes(recipes);
+    setDisplayRecipes(recipesData.getAllRecipes);
   }
   }, [recipesData])
   useEffect(() => {
@@ -68,7 +65,7 @@ const RecipesPage = ({data}) => {
 export default RecipesPage;
 
 const GetAllRecipesQuery = gql`
-  {
+  query GetAllRecipesRecipes{
     getAllRecipes {
         carbohydrates
         energy
