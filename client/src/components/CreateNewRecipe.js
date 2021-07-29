@@ -9,7 +9,6 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   const [ingredients, setIngredients] = useState([]);
   const [recipeInstruction, setRecipeInstruction] = useState([]);
   const [addRecipe, { data:addRecipeData }] = useMutation(ADD_RECIPE);
-  console.log(ingredientsData);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -37,7 +36,10 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   }
 
   const addInstruction = instruction => {
-    setRecipeInstruction([instruction])
+    setRecipeInstruction(instruction.split(/\n/))
+  }
+  const removeIngredient = ingrId => {
+    setIngredients(ingredients.filter(ingredient => ingrId !== ingredient.id));
   }
 
   return (
@@ -47,21 +49,28 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
         <form onSubmit={handleSubmit} className="new-recipe__form">
           <input type="text" value={name} onChange={event => setName(event.target.value)} 
           placeholder='Recipe name' className="new-recipe__input__name"/>
-          <input type="number" value={portions} onChange={event => setPortions(event.target.value)} 
+          <input type="number" onChange={event => setPortions(event.target.value)} 
           placeholder='Recipe portions' className="new-recipe__input__portions"/>
         </form>
           <SearchBar searchData = {ingredientsData.map(ingredient => ({display: ingredient.name,value:ingredient.id}))}
             placeholder = 'Search for ingredient'
             getSearchValue={addIngredient} />
             <ul className="new-recipe__ingredient-result">
-            {ingredients.map(ingredient => {
-              return (<li>
+            {ingredients.map((ingredient, index) => {
+              return (
+              <li className="new-recipe__ingredient-item" key={index}>
+                <p className="new-recipe__ingredient-name">
                 {ingredientsData.find(ingredientData => ingredientData.id === ingredient.id).name}
-                <input type="number" placeholder="Amount" onChange={e => changeAmount(e.target.value, ingredient.id)}></input>g
+                </p>
+                <div className="new-recipe__ingredient-input">
+                  <input type="number" placeholder="Amount" onChange={e => changeAmount(e.target.value, ingredient.id)}></input>
+                  <p>g</p>
+                </div>
+                <button className="new-recipe__ingredient-remove" onClick={e => removeIngredient(ingredient.id)}>X {/*TODO REMOVE INGREDIENT */}</button>
               </li>
             )})}
             </ul>
-            <input className="new-recipe__instructions" type="text" placeholder="Instructions" onChange={e => addInstruction(e.target.value)}></input>
+            <textarea className="new-recipe__instructions" rows={5} placeholder="Instructions: &#13;&#10;Step 1&#13;&#10;Step 2" onChange={e => addInstruction(e.target.value)}></textarea>
       </div>
       <div className="new-recipes__buttons">
         <button className="new-recipe__button new-recipe__cancel-button" onClick={() => setClickedNewRecipeButton(false)}>

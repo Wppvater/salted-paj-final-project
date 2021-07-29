@@ -347,7 +347,7 @@ main {
   color: $primary-color;
   margin: 1rem;
   border-radius: 1rem;
-  padding: 0.7rem;
+  padding: 1rem;
 }
 
 .plan__meals-in-day_selected {
@@ -366,6 +366,10 @@ main {
   color: white;
 }
 
+.plan__save:active {
+  background: #1D153A;
+}
+
 .main__recipes {
   height: calc(100vh - 120px);
 }
@@ -380,7 +384,8 @@ main {
 
 .recipes__searchbar {
   background-color: white;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
+  box-shadow: 0px 10px 20px rgb(142, 131, 156, 0.2);
 }
 
 
@@ -388,6 +393,8 @@ main {
   background-color: $quartery-color;
   margin: 1rem;
   border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0px 10px 20px rgb(142, 131, 156, 0.2);
 
   .recipe__first-line {
     display: flex;
@@ -399,24 +406,26 @@ main {
   .recipe__name {
     text-align: left;
     font-size: 1rem;
+    margin-top: 0.5rem;
   }
 
   .recipe__calories {
     color: $secondary-color;
+    margin-top: 0.5rem;
   }
   
   .recipe__ingredients {
     margin: 0 0 0 0.5rem;
     color: $secondary-color;
     text-align: left;
-    width: 80%;
+    width: 95%;
   }
 
   .more-info__button {
     @include button;
     background-color: $seventh-color;
     color: $quartery-color;
-    margin: 0 0 1rem 15rem;
+    margin: 1rem 0.3rem 0.5rem 15rem;
   }
 
 }
@@ -456,21 +465,90 @@ main {
   z-index: 1; 
   left: 0;
   width: 100%;
-  height: 91%;
+  height: 93%;
   // overflow: auto;
   background-color: rgb(212,212,212,0.65);
   top: 60px;
 }
 
 .new-recipe__content {
-  padding-top: 1.5rem;
+  padding: 1.5rem 0;
   background-color: white;
   margin: 10% auto 0;
   border-radius: 0.5rem;
   border: 1px solid #888;
   width: 90%; 
-  height: 60%;
   border: none;
+  .searchbar{
+    height: 8%;
+    position:relative;
+    .searchbar__dropdown{
+      position:absolute;
+      background-color: white;
+      display:none;
+      height: 8rem;
+    }
+  }
+  .searchbar:hover,.searchbar:focus-within{
+    .searchbar__dropdown{
+      display:block;
+      z-index: 4;
+    }
+  }
+  .new-recipe__instructions {
+    @include input;
+    height: 6rem;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    margin-top: 0;
+    width: 85%;
+  }
+
+  .new-recipe__instructions:focus {
+    border: 1px solid $tertiary-color;
+    outline: none;
+    background-color: $quartery-color;
+  }
+}
+
+.new-recipe__ingredient-result {
+  margin: 2rem 0 0;
+  height: 7rem;
+  overflow: scroll;
+  
+  .new-recipe__ingredient-item {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2%;
+  }
+  .new-recipe__ingredient-name {
+    overflow: auto;
+    white-space: nowrap;
+    height: 20px;
+    width: 50%;
+    text-align: left;
+    // margin: 0 0 0 1rem;
+    
+  }
+  .new-recipe__ingredient-input {
+    display: flex;
+    width: 20%;
+    height: 80%;
+  }
+  
+  input {
+    width: 100%;
+    margin: 0 0.2rem;
+
+  }
+
+  .new-recipe__ingredient-remove {
+    @include button;
+    font-size: 0.6rem;
+    background-color: $primary-color;
+    color: white;
+  }
+  
 }
 
 .new-recipe__input__name, .new-recipe__input__portions, .searchbar__input {
@@ -489,7 +567,7 @@ main {
   width: 100%;
   height: 100%;
   // overflow: auto;
-  background-color: rgb(212,212,212,0.65);
+  background-color: rgba(212, 212, 212, 0.65);
 }
 
 .recipe-info__content {
@@ -545,26 +623,24 @@ main {
   }
 }
 
-.new-recipe__ingredient-result {
-  height: 50%;
-}
-
-.new-recipe__instructions {
-  @include input;
-}
-
 .new-recipes__buttons {
 
   .new-recipe__button {
     @include button;
-    background-color: $tertiary-color;
     color: white;
-    padding: 0.6rem 1.3rem;
+    padding: 0.6rem 2rem;
     margin: 1rem 1.5rem;
     border-radius: 1rem;
+    font-size: 1rem;
   }
 
   .new-recipe__cancel-button {
     background-color: $secondary-color;
+    box-shadow: 0px 10px 30px rgba(212, 212, 212, 0.8);
+  }
+
+  .new-recipe__submit-button {
+    background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
+    box-shadow: 0px 10px 30px #fbbf8a94;
   }
 }
