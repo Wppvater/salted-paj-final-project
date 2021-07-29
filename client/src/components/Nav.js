@@ -38,12 +38,12 @@ const Nav = () => {
 
 return (
   <nav className="nav">
-      <img src={homeIcon} alt="home-icon" id="1" className="nav__home" className={navSchedule ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 1, '/')}/>
+      <img src={homeIcon} alt="home-icon" id="1" className={navSchedule ? 'nav__home' :"nav__home nav__unselected"} onClick={e => clickSelectNav(e, 1, '/')}/>
     {/* <Link to="/plan"> */}
-      <img src={planIcon} alt="plan-icon" id="2" className="nav__plan " className={navPlan ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 2, '/plan')} />
+      <img src={planIcon} alt="plan-icon" id="2" className={navPlan? 'nav__plan' :"nav__plan nav__unselected"} onClick={e => clickSelectNav(e, 2, '/plan')} />
     {/* </Link> */}
     {/* <Link to="/recipes"> */}
-      <img src={recipeIcon} alt="recipe-icon" id="3" className="nav__recipes" className={navRecipes ? '' :"nav__unselected" } onClick={e => clickSelectNav(e, 3, '/recipes')} />
+      <img src={recipeIcon} alt="recipe-icon" id="3" className={navRecipes ? 'nav__recipes' :"nav__recipes nav__unselected"} onClick={e => clickSelectNav(e, 3, '/recipes')} />
     {/* </Link> */}
     {/* <Link to="/profile">
       <img src={profileIcon} alt="profile-icon" className="nav__icon nav__profile nav__icon__inactive" />
