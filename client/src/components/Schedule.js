@@ -19,7 +19,7 @@ const Schedule = ({scheduleData}) => {
   }
 
   return (
-    <section>
+    <section className="schedule__card">
       {(days != []) ? days.map((day,index) => <DailySchedule setActiveRecipe={setActiveRecipe} meals={day} date={new Date(0).setDate(actualDate.getDate()+index)} key={index}/>): ''}
       {activeRecipe ? <div>
         <Query query={GetRecipeQuery} variables={{recipeId:activeRecipe}} >

@@ -18,8 +18,14 @@ module.exports = {
         url: process.env.API_LOCATION || "https://safe-everglades-22709.herokuapp.com/api/",
         
       },
+    },
+    {
+      resolve: 'gatsby-plugin-favicons',
+      options: {
+        logo: './src/images/favicon.ico',
+        appName: 'Eatsy',
+      }
     }
   ],
-    // Simple config, passing URL
-    
+    // Simple config, passing URL  
 };

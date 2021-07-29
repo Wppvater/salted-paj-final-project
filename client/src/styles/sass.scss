@@ -565,7 +565,7 @@ main {
   left: 0;
   top: 60px;
   width: 100%;
-  height: 100%;
+  height: 92.5%;
   // overflow: auto;
   background-color: rgba(212, 212, 212, 0.65);
 }
@@ -647,6 +647,45 @@ main {
 
 @media screen and (min-width: 600px) {
  
-
+  .schedule__card {
+    max-width: 900px;
+    margin: auto;
+    margin-top: 1rem;
+  }
   
+  .plan__options {
+    max-width: 900px;
+  }
+  
+  .searchbar__input {
+    max-width: 900px;
+  }
+  
+  .recipe__body {
+    max-width: 900px;
+    margin: 100px auto;
+  }
+
+  .recipe__new {
+    right: 80vw;
+    top: 83%;
+  }
+
+  .new-recipe__content {
+
+    .searchbar__form {
+      display: flex;
+      justify-content: center;
+    }
+
+    .searchbar__dropdown {
+      max-width: 100%;
+      margin-top: 3rem;
+    }
+  }
+
+  .new-recipe__ingredient-result {
+    max-width: 950px;
+    margin: 2rem auto;
+  }
 }

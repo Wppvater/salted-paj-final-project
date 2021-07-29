@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import Schedule from "../components/Schedule";
 import '../styles/sass.scss';
-import logo from '../images/logo.png';
+import logo from '../images/logo2.png';
 
 const IndexPage = ({data}) => {
   // const [generateSchedule, { data: generateScheduleData }] = useMutation(GENERATE_SCHEDULE);

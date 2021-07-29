@@ -29,10 +29,11 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   }
   const changeAmount = (amount, id) => {
     const ingredient = ingredients.find(ingredient => ingredient.id === id);
-    const arr = ingredients.filter(ingredient => ingredient.id !== id);
+    // const arr = ingredients.filter(ingredient => ingredient.id !== id);
     ingredient.amount = Number(amount);
     ingredient.grams = ingredient.amount;
-    setIngredients([...arr,ingredient]);
+    // console.log(ingredients);
+    // setIngredients([...arr,ingredient]);
   }
 
   const addInstruction = instruction => {
