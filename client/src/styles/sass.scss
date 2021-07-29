@@ -159,7 +159,7 @@ main {
 
     img {
       width: 120px;
-      height: 40px;
+      height: 35px;
     }
 }
 
@@ -643,4 +643,10 @@ main {
     background: radial-gradient(ellipse at top,#FCB374, #FF8B2D);
     box-shadow: 0px 10px 30px #fbbf8a94;
   }
+}
+
+@media screen and (min-width: 600px) {
+ 
+
+  
 }

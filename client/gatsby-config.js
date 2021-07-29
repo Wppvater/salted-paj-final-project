@@ -15,7 +15,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "saltedpaj",
         // Url to query from
-        url: process.env.API_LOCATION || "https://desolate-lowlands-89881.herokuapp.com/api/",
+        url: process.env.API_LOCATION || "https://safe-everglades-22709.herokuapp.com/api/",
         
       },
     }
