@@ -54,6 +54,7 @@ main {
 
 .main__div {
   overflow: scroll;
+  // height: 100%;
   height: calc(100vh - 120px);
 }
 
@@ -120,6 +121,8 @@ main {
 .nav {
   @include nav;
   box-shadow: 0px 0px 20px rgb(182, 182, 182);
+  position:absolute;
+  bottom:-60;
 }
 
 
