@@ -19,13 +19,6 @@ module.exports = {
         
       },
     },
-    {
-      resolve: 'gatsby-plugin-favicons',
-      options: {
-        logo: './src/images/favicon.ico',
-        appName: 'Eatsy',
-      }
-    }
   ],
     // Simple config, passing URL  
 };
