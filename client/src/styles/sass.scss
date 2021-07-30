@@ -59,7 +59,7 @@ main {
 
 .main__div {
   overflow: scroll;
-  padding: 15% 0 15%;
+  padding: 3.5rem 0;
   height: 100%;
   // height: calc(100% - 120px);
 }
@@ -684,6 +684,11 @@ main {
 }
 
 @media screen and (min-width: 600px) {
+
+  // .main__div, .main__recipes {
+  //   margin-top: 3rem;
+  //   padding: 3rem 0 0;
+  // }
  
   .schedule__card {
     max-width: 900px;
