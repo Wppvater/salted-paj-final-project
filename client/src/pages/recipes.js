@@ -4,6 +4,7 @@ import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
 import Recipe from "../components/Recipe";
 import gql from 'graphql-tag';
+import '../styles/sass.scss';
 import {Query, useQuery} from 'react-apollo';
 import CreateNewRecipe from '../components/CreateNewRecipe'
 import { graphql } from 'gatsby';

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
 import gql from 'graphql-tag';
+import '../styles/sass.scss';
 import {Query, useMutation} from 'react-apollo';
 import { navigate } from "gatsby";
 
