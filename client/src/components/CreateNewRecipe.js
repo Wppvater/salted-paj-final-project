@@ -8,7 +8,11 @@ const CreateNewRecipe = ({setClickedNewRecipeButton, ingredientsData}) => {
   const [portions, setPortions] = useState(1);
   const [ingredients, setIngredients] = useState([]);
   const [recipeInstruction, setRecipeInstruction] = useState([]);
-  const [addRecipe, { data:addRecipeData }] = useMutation(ADD_RECIPE);
+  const [addRecipe, { data:addRecipeData }] = useMutation(ADD_RECIPE, {
+    refetchQueries: [
+      'GetAllRecipesRecipes',
+    ]
+  });
 
   const handleSubmit = event => {
     event.preventDefault();
