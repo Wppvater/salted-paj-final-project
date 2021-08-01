@@ -444,12 +444,25 @@ main {
     width: 95%;
   }
 
-  .more-info__button {
-    @include button;
-    background-color: $seventh-color;
-    color: $quartery-color;
-    margin: 1rem 0.3rem 0.5rem 15rem;
+  .more-info__button__positioner {
+    width: 100%;
+    display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+
+    .more-info__button {
+      @include button;
+      margin-left: auto;
+      width: 4.5rem;
+      justify-self: right;
+      background-color: $seventh-color;
+      color: $quartery-color;
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
   }
+
 
 }
 
@@ -595,7 +608,7 @@ main {
 
 .recipe-info__content {
   background-color: #fefefe;
-  margin: 15% auto 6%;
+  margin: 3rem auto 1rem;
   padding: 20px;
   border-radius: 0.5rem;
   width: 90%; 
@@ -676,11 +689,6 @@ main {
 }
 
 @media screen and (min-width: 600px) {
-
-  // .main__div, .main__recipes {
-  //   margin-top: 3rem;
-  //   padding: 3rem 0 0;
-  // }
  
   .schedule__card {
     max-width: 900px;
@@ -723,4 +731,9 @@ main {
     max-width: 950px;
     margin: 2rem auto;
   }
+
+  .more-info__button {
+    margin: 10rem 0.3rem 0.5rem 20rem;
+  }
+
 }

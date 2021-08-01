@@ -22,9 +22,11 @@ const Recipe = ({recipe}) => {
       {/* <div className="recipe__categories">
         Categories
       </div> */}
-      <button className="more-info__button">
-        More info
-      </button>
+      <div className="more-info__button__positioner">
+        <button className="more-info__button">
+          More info
+        </button>
+      </div>
     </div>
     <div className="recipe__more-info">
       {moreInfoClicked ? 
