@@ -31,15 +31,6 @@ li {
 body, html, #___gatsby, #gatsby-focus-wrapper {
   height: 100%;
 }
-// body {
-//   min-height: 100vh;
-//   min-height: -webkit-fill-available;
-// }
-
-// html {
-//   height: -webkit-fill-available;
-// }
-
 
 .circle {
   background: radial-gradient(80.99% 100% at 50% 0%, #00FF0A 0%, #36008E 100%), radial-gradient(50% 123.47% at 50% 50%, #EFE7C8 0%, #A668F3 100%), linear-gradient(301.28deg, #E995D8 0%, #48DD9E 100%), linear-gradient(294.84deg, #5A60E4 0%, #FCB374 100%), linear-gradient(52.29deg, #000000 0%, #00FF85 100%), radial-gradient(100% 138.69% at 100% 0%, #0007A5 0%, #FF7A00 100%), radial-gradient(70.41% 100% at 50% 0%, #D5B300 0%, #2200AA 100%);
@@ -61,25 +52,18 @@ main {
   overflow: scroll;
   padding: 3.5rem 0;
   height: 100%;
-  // height: calc(100% - 120px);
 }
 
 
 .App__logo {
   overflow:scroll;
-  /* position: absolute; */
   height: 20vmin;
-  // width: 20vmin;
   pointer-events: none;
   margin: auto;
 }
 
 .schedule__logo__button {
   margin-top: 13rem;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // height: 0rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -158,6 +142,14 @@ main {
 
 .nav__plan {
   transform: rotate(90deg);
+}
+
+.main__loading {
+  margin: 3rem 0;
+
+  .loading__text {
+    margin: 1rem;
+  }
 }
 
 .plan__option__date {
@@ -326,8 +318,8 @@ main {
 
 .days__slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
-  width: 15px; /* Set a specific slider handle width */
-  height: 15px; /* Slider handle height */
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
   background-color: $primary-color; /* Green background */
   border-radius: 15px;
   cursor: pointer; /* Cursor on hover */
