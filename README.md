@@ -2,6 +2,8 @@
 
 Eating and planning for meals should be easy. Thats why we created Eatsy! 
 
+Deployed application: www.eatsy.tk
+
 ![Eatsy](https://user-images.githubusercontent.com/73835849/132840537-57dc754f-1be5-4b6a-b17a-2cc6f009c129.png)
 
 Eatsy will schedule a meal plan for you, so you know exactly what to cook every meal, day and week. No more planning! 
